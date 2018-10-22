@@ -2,6 +2,8 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var fs = require('fs');
 var user_data = require('./user_data.json');
+const { Client } = require('pg');
+
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -13,6 +15,21 @@ logger.level = 'debug';
 var bot = new Discord.Client({
    token: process.env.token,
    autorun: true
+});
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
 });
 
 bot.on('ready', function (evt) {
