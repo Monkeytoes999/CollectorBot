@@ -1,11 +1,11 @@
 {
-  "name": "Collector Bot",
+  "name": "Collectoring...",
   "version": "1.0.0",
   "description": "Plz come back later for accurate description",
   "main": "bot.js",
   "author": "Graham",
   "dependencies": {
-    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "discord.io": "github:woor/discord.io#gateway_v6",
     "pg": "^7.5.0",
     "winston": "^3.1.0"
   }
