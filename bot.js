@@ -29,7 +29,6 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
   }
-  client.end();
 });
 
 bot.on('ready', function (evt) {
