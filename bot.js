@@ -4,6 +4,16 @@ var fs = require('fs');
 var user_data = require('./user_data.json');
 const { Client } = require('pg');
 var usertest = {money: 0, karma: 0, pets: [0, 0, 0], totalPets: [0, 0, 0]};
+import { 
+    Stitch,
+    RemoteMongoClient,
+    AnonymousCredential
+} from "mongodb-stitch-browser-sdk";
+
+const client2 = Stitch.initializeDefaultAppClient('collectorbotstitch-tmldd');
+
+const db = client2.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('Collecting');
+
 
 
 // Configure logger settings
@@ -30,6 +40,17 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
   }
+});
+
+client2.auth.loginWithCredential(new AnonymousCredential()).then(user => 
+  db.collection('Collector').updateOne({owner_id: client2.auth.user.id}, {$set:{number:42}}, {upsert:true})
+).then(() => 
+  db.collection('Collector').find({owner_id: client2.auth.user.id}, { limit: 100}).asArray()
+).then(docs => {
+    console.log("Found docs", docs)
+    console.log("[MongoDB Stitch] Connected to Stitch")
+}).catch(err => {
+    console.error(err)
 });
 
 bot.on('ready', function (evt) {
