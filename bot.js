@@ -30,7 +30,11 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
     console.log(JSON.stringify(row));
   }
 });
-client.createFile('user_data.json');
+rows := [][]interface{}{
+    {"John", "Smith", int32(36)},
+    {"Jane", "Doe", int32(29)},
+}
+
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
