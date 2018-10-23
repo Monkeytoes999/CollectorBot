@@ -3,6 +3,7 @@ var logger = require('winston');
 var fs = require('fs');
 var user_data = require('./user_data.json');
 const { Client } = require('pg');
+var usertest = {money: 0, karma: 0, pets: [0, 0, 0], totalPets: [0, 0, 0]};
 
 
 // Configure logger settings
@@ -30,11 +31,7 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
     console.log(JSON.stringify(row));
   }
 });
-rows = [][]interface{}{
-    {"John", "Smith", int32(36)},
-    {"Jane", "Doe", int32(29)},
-}
-
+[][]interface{}{} = usertest;
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
