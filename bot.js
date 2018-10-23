@@ -30,6 +30,7 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
     console.log(JSON.stringify(row));
   }
 });
+client.createFile('user_data.json');
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
