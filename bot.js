@@ -30,7 +30,7 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
     console.log(JSON.stringify(row));
   }
 });
-rows := [][]interface{}{
+rows = [][]interface{}{
     {"John", "Smith", int32(36)},
     {"Jane", "Doe", int32(29)},
 }
