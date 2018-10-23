@@ -31,7 +31,6 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
     console.log(JSON.stringify(row));
   }
 });
-[][]interface{}{} = usertest;
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
