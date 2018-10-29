@@ -60,7 +60,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		});
 	}
 	
-	if (evt.d.mentions[0].id == "393586279964475393"){
+	if (evt.d.mentions.length > 0 && evt.d.mentions[0].id == "393586279964475393"){
   		bot.sendMessage({
         		to: channelID,
      			message: 'hello'
