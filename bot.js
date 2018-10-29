@@ -60,6 +60,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		});
 	}
 	
+	if (evt.d.mentions[0].id == "393586279964475393"){
+  		bot.sendMessage({
+        		to: channelID,
+     			message: 'hello'
+    		});
+	}
+	
     if (message.substring(0, 1) == '?') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
