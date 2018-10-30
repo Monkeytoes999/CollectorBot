@@ -83,7 +83,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'Pong!'
                 });
             break;
-				case 'BEG':
+		case 'GET':
+			bot.sendMessage({
+				to: channelID,
+				message: client.query('SELECT OOF;')
+			});
+			break;
+			case 'BEG':
 				if (user_data[userID] != undefined){
 						bot.sendMessage({
 							to: channelID,
