@@ -25,7 +25,7 @@ const client = new Client({
 
 client.connect();
 
-client.query('INSERT OOF 0;');
+client.query('UPDATE OOF ((SELECT OOF)+1);');
 
 client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
   if (err) throw err;
