@@ -25,8 +25,6 @@ const client = new Client({
 
 client.connect();
 
-client.query('UPDATE OOF ((SELECT OOF)+1);');
-
 client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
@@ -83,12 +81,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'Pong!'
                 });
             break;
-		case 'GET':
-			bot.sendMessage({
-				to: channelID,
-				message: client.query('SELECT OOF;')
-			});
-			break;
 			case 'BEG':
 				if (user_data[userID] != undefined){
 						bot.sendMessage({
