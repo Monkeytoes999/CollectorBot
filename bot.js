@@ -2,8 +2,12 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var fs = require('fs');
 var user_data = require('./user_data.json');
-const { Client } = require('pg');
 var usertest = {money: 0, karma: 0, pets: [0, 0, 0], totalPets: [0, 0, 0]};
+var config = {
+    databaseURL: "https://discordbot-a817a.firebaseio.com"
+  };
+  firebase.initializeApp(config);
+var database = firebase.database();
 
 
 // Configure logger settings
@@ -18,19 +22,7 @@ var bot = new Discord.Client({
    autorun: true
 });
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
 
-client.connect();
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-});
 
 
 bot.on('ready', function (evt) {
@@ -44,21 +36,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // It will listen for messages that will start with `!`
 	
 	message = message.toUpperCase();
-	
-	if (user_data[userID] == undefined){
-		let userDataz = {
-			money: 0,
-			karma: 0,
-			pets: [0, 0, 0],
-			totalPets: [0, 0, 0]
-		}
-
-		user_data[userID] = userDataz;
-
-		fs.writeFile('./user_data.json', JSON.stringify(user_data, null, 4), (err) => {
-			// good to go if no err(or)
-		});
-	}
 	
 	if (evt.d.mentions.length > 0 && evt.d.mentions[0].id == "393586279964475393"){
   		bot.sendMessage({
