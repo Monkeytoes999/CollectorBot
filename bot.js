@@ -1,7 +1,7 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var fs = require('fs');
-var userIDData = '';
+var tacobell = '';
 var useData = '';
 
 // Configure logger settings
@@ -30,7 +30,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // It will listen for messages that will start with `!`
 	
 	message = message.toUpperCase();
-	userIDData = bot.getMessage({
+	tacobell = bot.getMessage({
 		channelID: '509160162959949825',
 		messageID: '509164727696359444'
 	});
@@ -65,12 +65,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
-				if (userIDData.includes(userID)){
+				if (tacobell.includes(userID)){
 						bot.sendMessage({
 							to: channelID,
 							message: user + ', your begging has been answered. Your lead count has increased by 1'
 						});
-					let begMessID = userIDData.substring(userIDData.indexOf(userID) + 19, userIDData.indexOf(userID) + 37);
+					let begMessID = tacobell.substring(tacobell.indexOf(userID) + 19, tacobell.indexOf(userID) + 37);
 					let begMess = bot.getMessage({
 								channelID: '509149632618823681',
 								messageID: begMessID
