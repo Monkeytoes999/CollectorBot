@@ -40,20 +40,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
-			bot.sendMessage({
-				to: channelID,
-				message: message.substring(8, 26)
-			});
-			bot.sendMessage({
-				to: channelID,
-				message: parseInt(message.substring(28))
+			bot.editMessage({
+				channelID: '509149632618823681',
+				messageID: '509161596023603211',
+				message '30000, 0, 0, 0, 0, 0, 0, 0
 			});
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
 					if (message.length > 28){
-						if (tacobell.content.includes(message.substring(8, 26)) && tacobell.content.includes(message.substring(8, 26)) != userID){
+						if (tacobell.content.includes(message.substring(8, 26)) && message.substring(8, 26) != userID){
 							let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(8, 26)) + 20), (tacobell.content.indexOf(message.substring(8, 26)) + 38)));
 							bot.getMessage({
@@ -65,6 +62,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										channelID: '509149632618823681',
 										messageID: giverMessID,
 										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(28))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+									});
+									bot.sendMessage({
+										to: channelID,
+										message: message.substring(6, 27) + ', ' + user + ' has sent you ' + message.substring(28) + ' lead'
 									});
 								} else {
 									bot.sendMessage({
@@ -84,10 +85,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + parseInt(message.substring(28))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 									});
 								}
-							});
-							bot.sendMessage({
-								to: channelID,
-								message: message.substring(6, 27) + ', ' + user + ' has sent you ' + message.substring(28) + ' lead'
 							});
 						} else if (tacobell.content.includes(message.substring(8, 26)) == userID){
 							bot.sendMessage({
