@@ -30,12 +30,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // It will listen for messages that will start with `!`
 	
 	message = message.toUpperCase();
-	tacobell = bot.getMessage({
-		channelID: '509160162959949825',
-		messageID: '509164727696359444'
-	}, function (err,res){
-		tacobell = res
-	});
 	
     if (message.substring(0, 1) == '?') {
         var args = message.substring(1).split(' ');
@@ -67,6 +61,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
+			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.includes(userID)){
 						bot.sendMessage({
 							to: channelID,
@@ -85,6 +80,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					});
 						
 				}
+			});
 				break;
 				case 'LEAD':
 						bot.sendMessage({
