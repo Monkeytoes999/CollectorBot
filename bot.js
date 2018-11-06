@@ -50,11 +50,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				if (tacobell.content.includes(userID)){
 						bot.sendMessage({
 							to: channelID,
-							message: 'You spent ' + message.substring(4) + 'lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
+							message: 'You spent ' + message.substring(4) + ' lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
 						}, function (err, res){
 							bot.editMessage({
 								channelID: channelID,
-								messageID: res,
+								messageID: res.id,
 								message: 'You spent ' + message.substring(4) + 'lead and chose heads. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads! You won '  + (parseInt(message.substring(4))*2) + 'lead!'
 							});
 						});
