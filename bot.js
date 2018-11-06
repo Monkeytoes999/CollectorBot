@@ -43,7 +43,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			bot.editMessage({
 				channelID: '509149632618823681',
 				messageID: '509161596023603211',
-				message '30000, 0, 0, 0, 0, 0, 0, 0'
+				message: '30000, 0, 0, 0, 0, 0, 0, 0'
 			});
             break;
 		case 'GIVE':
