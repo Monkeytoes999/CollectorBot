@@ -71,11 +71,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}, function (err, res){
 						console.log(res);
 						console.log('test');
-						console.log(((res.content.substring(0, res.content.indexOf(',')) + 1) + (res.content.substring(res.content.indexOf(',') +1))));
+						console.log((parseInt((res.content.substring(0, res.content.indexOf(','))) + 1) + (res.content.substring(res.content.indexOf(',') +1))));
 						bot.editMessage({
 							channelID: 509149632618823681,
 							messageID: begMessID,
-							message: ((res.content.substring(0, res.content.indexOf(',')) + 1) + (res.content.substring(res.content.indexOf(',') +1)))
+							message: parseInt((res.content.substring(0, res.content.indexOf(','))) + 1) + (res.content.substring(res.content.indexOf(',') +1)))
 						});
 					});
 						
