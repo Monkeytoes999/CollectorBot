@@ -57,7 +57,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (!tacobell.content.includes(userID)){
 					bot.sendMessage({
-						to: 509149632618823681,
+						to: '509149632618823681',
 						message: '0, 0, 0, 0, 0, 0, 0, 0'
 					}, function (err, res){
 						console.log(res)
@@ -65,6 +65,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							channelID: '509160162959949825',
 							messageID: '509164727696359444',
 							message: tacobell.content + ' ' + userID + ', ' + res.id
+						});
+						bot.sendMessage({
+							to: channelID,
+							message: 'Congrats ' + user + '! You can now use this bot fully.'
 						});
 					});	
 				} else {
