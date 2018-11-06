@@ -42,7 +42,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'PING':
 			bot.editMessage({
 				channelID: '509149632618823681',
-				messageID: '509161596023603211',
+				messageID: '509161625413222400',
 				message: '30000, 0, 0, 0, 0, 0, 0, 0'
 			});
             break;
