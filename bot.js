@@ -40,20 +40,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
-			if (message.includes('HEADS')){
-					    message = message.substring(0, message.indexOf('HEADS')) + message.substring(message.indexOf('HEADS') + 6)
-					} else if (message.includes('HEAD')){
-					    message = message.substring(0, message.indexOf('HEAD')) + message.substring(message.indexOf('HEAD') + 5)
-					} else if (message.includes('H')){
-					    message = message.substring(0, message.indexOf('H')) + message.substring(message.indexOf('H') + 2)
-					}  else if (message.includes('TAILS')){
-					    message = message.substring(0, message.indexOf('TAILS')) + message.substring(message.indexOf('TAILS') + 6)
-					}  else if (message.includes('TAIL')){
-					    message = message.substring(0, message.indexOf('TAIL')) + message.substring(message.indexOf('TAIL') + 5)
-					}  else if (message.includes('T')){
-					    message = message.substring(0, message.indexOf('T')) + message.substring(message.indexOf('T') + 2)
-					}
-			console.log(parseInt('abc') == NaN)
+			console.log(parseInt('abc') == undefined)
                 bot.sendMessage({
                     to: channelID,
                     message: parseInt('abc')
@@ -64,6 +51,29 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				if (tacobell.content.includes(userID)){
 					let hORt = 'heads'
 					let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+					if (parseInt(message.substring(4)) == NaN){
+						bot.sendMessage({
+							channelID: channelID,
+							message: 'Invalid Syntax!'
+						});
+						break;
+					}
+					if (message.includes('HEADS')){
+					    message = message.substring(0, message.indexOf('HEADS')) + message.substring(message.indexOf('HEADS') + 6)
+					} else if (message.includes('HEAD')){
+					    message = message.substring(0, message.indexOf('HEAD')) + message.substring(message.indexOf('HEAD') + 5)
+					} else if (message.includes('H')){
+					    message = message.substring(0, message.indexOf('H')) + message.substring(message.indexOf('H') + 2)
+					}  else if (message.includes('TAILS')){
+						hORt = 'tails';
+					    message = message.substring(0, message.indexOf('TAILS')) + message.substring(message.indexOf('TAILS') + 6)
+					}  else if (message.includes('TAIL')){
+						hORt = 'tails';
+					    message = message.substring(0, message.indexOf('TAIL')) + message.substring(message.indexOf('TAIL') + 5)
+					}  else if (message.includes('T')){
+						hORt = 'tails';
+					    message = message.substring(0, message.indexOf('T')) + message.substring(message.indexOf('T') + 2)
+					}
 					bot.getMessage({
 						channelID: '509149632618823681',
 						messageID: begMessID
