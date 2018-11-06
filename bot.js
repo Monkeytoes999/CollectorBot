@@ -57,8 +57,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 		case 'DOTHIS':
 			bot.sendMessage({
-				to: '509160162959949825',
-				message: message.substring(8)
+				to: channelID,
+				message: bot.getMessage({
+						channelID: '509160162959949825',
+						messageID: '509164727696359444'
+					});
 			});
 			break;
 			case 'BEG':
