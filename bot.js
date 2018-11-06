@@ -141,5 +141,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // Just add any case commands if you want to..
          }
      }
+	} else {
+		bot.sendMessage({
+			to: channelID,
+			message: 'Please do not attempt to use bots with me.'
+		});
 	}
 });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
