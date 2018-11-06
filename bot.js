@@ -1,6 +1,8 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var fs = require('fs');
+var userIDData = '';
+var useData = '';
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -28,7 +30,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // It will listen for messages that will start with `!`
 	
 	message = message.toUpperCase();
-	
+	userIDData = bot.getMessage({
+		channelID: '509160162959949825',
+		messageID: '509164727696359444'
+	});
 	
     if (message.substring(0, 1) == '?') {
         var args = message.substring(1).split(' ');
@@ -57,10 +62,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
-				if (user_data[userID] != undefined){
+				if (userIDData.includes(userID)){
 						bot.sendMessage({
 							to: channelID,
 							message: user + ', your begging has been answered. Your lead count has increased by 1'
+						});
+					let begMessID = userIDData.substring(userIDData.indexOf(userID) + 19, userIDData.indexOf(userID) + 37);
+					let begMess = bot.getMessage({
+								channelID: '509149632618823681',
+								messageID: begMessID
+							});
+						bot.editMessage({
+							channelID: 509149632618823681,
+							messageID: begMessID,
+							message: begMess.substring(0, begMess.indexOf(','))
 						});
 				}
 				break;
