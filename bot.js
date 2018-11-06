@@ -40,9 +40,22 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
+			if (message.includes('heads')){
+					    message = message.substring(0, message.indexOf('heads')) + message.substring(message.indexOf('heads') + 6)
+					} else if (message.includes('head')){
+					    message = message.substring(0, message.indexOf('head')) + message.substring(message.indexOf('head') + 5)
+					} else if (message.includes('h')){
+					    message = message.substring(0, message.indexOf('h')) + message.substring(message.indexOf('h') + 2)
+					}  else if (message.includes('tails')){
+					    message = message.substring(0, message.indexOf('tails')) + message.substring(message.indexOf('tails') + 6)
+					}  else if (message.includes('tail')){
+					    message = message.substring(0, message.indexOf('tail')) + message.substring(message.indexOf('tail') + 5)
+					}  else if (message.includes('t')){
+					    message = message.substring(0, message.indexOf('t')) + message.substring(message.indexOf('t') + 2)
+					}
                 bot.sendMessage({
                     to: channelID,
-                    message: '<a:cf:509424634865909787> <:heads:509424625558749185> <:tails:509424611721609227>'
+                    message: message
                 });
             break;
 		case 'CF':
@@ -89,7 +102,47 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 												bot.editMessage({
 													channelID: channelID,
 													messageID: resss.id,
-													message: 'You spent ' + message.substring(4) + ' lead and chose heads. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails... you lost your '  + (parseInt(message.substring(4))) + ' lead!'
+													message: 'You spent ' + message.substring(4) + ' lead and chose heads. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails... you lost your '  + (parseInt(message.substring(4))) + ' lead.'
+												});
+											}, 2000);
+										});
+									});
+								}
+							} else {
+								if ((Math.floor(Math.random() * 2)) == 1){
+									bot.editMessage({
+										channelID: '509149632618823681',
+										messageID: begMessID,
+										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+									}, function (errr, ress){
+										bot.sendMessage({
+											to: channelID,
+											message: 'You spent ' + message.substring(4) + ' lead and chose tails. \nThe coin flips... <a:cf:509424634865909787>'
+										}, function (errrr, resss){
+											setTimeout(() => {
+												bot.editMessage({
+													channelID: channelID,
+													messageID: resss.id,
+													message: 'You spent ' + message.substring(4) + ' lead and chose tails. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails! You won '  + (parseInt(message.substring(4))*2) + ' lead!'
+												});
+											}, 2000);
+										});
+									});
+								} else {
+									bot.editMessage({
+										channelID: '509149632618823681',
+										messageID: begMessID,
+										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+									}, function (errr, ress){
+										bot.sendMessage({
+											to: channelID,
+											message: 'You spent ' + message.substring(4) + ' lead and chose tails. \nThe coin flips... <a:cf:509424634865909787>'
+										}, function (errrr, resss){
+											setTimeout(() => {
+												bot.editMessage({
+													channelID: channelID,
+													messageID: resss.id,
+													message: 'You spent ' + message.substring(4) + ' lead and chose tails. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads... you lost your '  + (parseInt(message.substring(4))) + ' lead.'
 												});
 											}, 2000);
 										});
