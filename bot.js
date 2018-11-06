@@ -91,7 +91,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									});
 								}
 							});
-						} else if (tacobell.content.includes(message.substring(8, 26)) == userID){
+						} else if (message.substring(8, 26) == userID){
 							bot.sendMessage({
 								to: channelID,
 								message: user + ', you can\'t send money to yourself!'
