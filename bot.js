@@ -53,7 +53,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}  else if (message.includes('T')){
 					    message = message.substring(0, message.indexOf('T')) + message.substring(message.indexOf('T') + 2)
 					}
-			console.log(parseInt('abc'))
+			console.log(parseInt('abc') == NaN)
                 bot.sendMessage({
                     to: channelID,
                     message: parseInt('abc')
@@ -68,7 +68,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						channelID: '509149632618823681',
 						messageID: begMessID
 					}, function (err, res){
-						if (0 > parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
+						if (0 < parseInt(message.substring(4)) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
 							if (hORt = 'heads'){
 								if ((Math.floor(Math.random() * 2)) == 1){
 									bot.editMessage({
