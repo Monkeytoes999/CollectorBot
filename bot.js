@@ -52,7 +52,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				if (tacobell.content.includes(userID)){
 					let hORt = 'heads'
 					let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
-					if (!parseInt(message.substring(4)) > 0){
+					if (!(parseInt(message.substring(4)) > 0)){
 						bot.sendMessage({
 							channelID: channelID,
 							message: 'Invalid Syntax!'
@@ -80,7 +80,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						messageID: begMessID
 					}, function (err, res){
 						if (0 < parseInt(message.substring(4)) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
-							if (hORt = 'heads'){
+							if (hORt == 'heads'){
 								if ((Math.floor(Math.random() * 2)) == 1){
 									bot.editMessage({
 										channelID: '509149632618823681',
