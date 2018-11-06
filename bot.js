@@ -42,19 +42,19 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'PING':
 			bot.sendMessage({
 				channelID: channelID,
-				message: message.substring(7, 25)
+				message: message.substring(8, 26)
 			});
 			bot.sendMessage({
 				channelID: channelID,
-				message: parseInt(message.substring(27))
+				message: parseInt(message.substring(28))
 			});
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
-					if (tacobell.content.includes(message.substring(7, 25))){
+					if (tacobell.content.includes(message.substring(8, 26))){
 						let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
-						let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(7, 25)) + 20), (tacobell.content.indexOf(message.substring(7, 25)) + 38)));
+						let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(8, 26)) + 20), (tacobell.content.indexOf(message.substring(8, 26)) + 38)));
 						bot.getMessage({
 							channelID: '509149632618823681',
 							messageID: giverMessID
@@ -62,7 +62,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							bot.editMessage({
 								channelID: '509149632618823681',
 								messageID: giverMessID,
-								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(27))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(28))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 							});
 						});
 						bot.getMessage({
@@ -72,7 +72,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							bot.editMessage({
 								channelID: '509149632618823681',
 								messageID: recieverMessID,
-								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + parseInt(message.substring(27))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + parseInt(message.substring(28))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 							});
 						});	
 					} else {
