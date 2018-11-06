@@ -65,12 +65,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
-				if (tacobell.includes(userID)){
+				if ((bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' })).includes(userID)){
 						bot.sendMessage({
 							to: channelID,
 							message: user + ', your begging has been answered. Your lead count has increased by 1'
 						});
-					let begMessID = tacobell.substring(tacobell.indexOf(userID) + 19, tacobell.indexOf(userID) + 37);
+					let begMessID = (bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' })).substring(bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' })).indexOf(userID) + 19, (bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' })).indexOf(userID) + 37);
 					let begMess = bot.getMessage({
 								channelID: '509149632618823681',
 								messageID: begMessID
@@ -78,7 +78,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						bot.editMessage({
 							channelID: 509149632618823681,
 							messageID: begMessID,
-							message: begMess.substring(0, begMess.indexOf(','))
+							message: bot.getMessage({channelID: '509149632618823681',		messageID: begMessID}).substring(0, begMess.indexOf(','))
 						});
 				}
 				break;
