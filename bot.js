@@ -84,13 +84,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									}, function (errr, ress){
 										bot.sendMessage({
 											to: channelID,
-											message: user + ', you spent ' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
+											message: user + ', you spent' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
 										}, function (errrr, resss){
 											setTimeout(() => {
 												bot.editMessage({
 													channelID: channelID,
 													messageID: resss.id,
-													message: user + ', you spent ' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads! You won '  + (parseInt(message.substring(3))*2) + ' lead!'
+													message: user + ', you spent' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads! You won '  + (parseInt(message.substring(3))*2) + ' lead!'
 												});
 											}, 2000);
 										});
@@ -103,13 +103,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									}, function (errr, ress){
 										bot.sendMessage({
 											to: channelID,
-											message: user + ', you spent ' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
+											message: user + ', you spent' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
 										}, function (errrr, resss){
 											setTimeout(() => {
 												bot.editMessage({
 													channelID: channelID,
 													messageID: resss.id,
-													message: user + ', you spent ' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails... you lost your '  + (parseInt(message.substring(3))) + ' lead.'
+													message: user + ', you spent' + message.substring(3) + ' lead and chose heads. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails... you lost your '  + (parseInt(message.substring(3))) + ' lead.'
 												});
 											}, 2000);
 										});
