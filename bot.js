@@ -55,7 +55,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}
                 bot.sendMessage({
                     to: channelID,
-                    message: message
+                    message: parseInt('abc')
                 });
             break;
 		case 'CF':
