@@ -40,18 +40,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
-			if (message.includes('heads')){
-					    message = message.substring(0, message.indexOf('heads')) + message.substring(message.indexOf('heads') + 6)
-					} else if (message.includes('head')){
-					    message = message.substring(0, message.indexOf('head')) + message.substring(message.indexOf('head') + 5)
-					} else if (message.includes('h')){
-					    message = message.substring(0, message.indexOf('h')) + message.substring(message.indexOf('h') + 2)
-					}  else if (message.includes('tails')){
-					    message = message.substring(0, message.indexOf('tails')) + message.substring(message.indexOf('tails') + 6)
-					}  else if (message.includes('tail')){
-					    message = message.substring(0, message.indexOf('tail')) + message.substring(message.indexOf('tail') + 5)
-					}  else if (message.includes('t')){
-					    message = message.substring(0, message.indexOf('t')) + message.substring(message.indexOf('t') + 2)
+			if (message.includes('HEADS')){
+					    message = message.substring(0, message.indexOf('HEADS')) + message.substring(message.indexOf('HEADS') + 6)
+					} else if (message.includes('HEAD')){
+					    message = message.substring(0, message.indexOf('HEAD')) + message.substring(message.indexOf('HEAD') + 5)
+					} else if (message.includes('H')){
+					    message = message.substring(0, message.indexOf('H')) + message.substring(message.indexOf('H') + 2)
+					}  else if (message.includes('TAILS')){
+					    message = message.substring(0, message.indexOf('TAILS')) + message.substring(message.indexOf('TAILS') + 6)
+					}  else if (message.includes('TAIL')){
+					    message = message.substring(0, message.indexOf('TAIL')) + message.substring(message.indexOf('TAIL') + 5)
+					}  else if (message.includes('T')){
+					    message = message.substring(0, message.indexOf('T')) + message.substring(message.indexOf('T') + 2)
 					}
                 bot.sendMessage({
                     to: channelID,
