@@ -40,11 +40,47 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
+			bot.sendMessage({
+				channelID: channelID,
+				message: message.substring(7, 25)
+			});
+			bot.sendMessage({
+				channelID: channelID,
+				message: parseInt(message.substring(27))
+			});
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
-					console.log(evt)
+					if (tacobell.content.includes(message.substring(7, 25))){
+						let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+						let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(7, 25)) + 20), (tacobell.content.indexOf(message.substring(7, 25)) + 38)));
+						bot.getMessage({
+							channelID: '509149632618823681',
+							messageID: giverMessID
+						}, function (err, res){
+							bot.editMessage({
+								channelID: '509149632618823681',
+								messageID: giverMessID,
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(27))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+							});
+						});
+						bot.getMessage({
+							channelID: '509149632618823681',
+							messageID: recieverMessID
+						}, function (err, res){
+							bot.editMessage({
+								channelID: '509149632618823681',
+								messageID: recieverMessID,
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + parseInt(message.substring(27))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+							});
+						});	
+					} else {
+						bot.sendMessage({
+							to: channelID,
+							message: user + ', the user you tried to give to has no data with this bot.'
+						});
+					}
 				} else {
 					bot.sendMessage({
 						to: channelID,
