@@ -54,21 +54,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'DOTHIS':
 			bot.sendMessage({
 				to: channelID,
-				message: bot.getMessage({
-						channelID: '509160162959949825',
-						messageID: '509164727696359444'
-					})
+				message: 'plsno'
 			});
 			break;
 			case 'BEG':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-				console.log(tacobell)
-				if (tacobell.includes(userID)){
+				if (tacobell.content.includes(userID)){
 						bot.sendMessage({
 							to: channelID,
 							message: user + ', your begging has been answered. Your lead count has increased by 1'
 						});
-					let begMessID = (tacobell.substring(tacobell.indexOf(userID) + 19), (tacobell.indexOf(userID) + 37));
+					let begMessID = (tacobell.content.substring(tacobell.content.indexOf(userID) + 19), (tacobell.content.indexOf(userID) + 37));
 					bot.getMessage({
 						channelID: '509149632618823681',
 						messageID: begMessID
@@ -76,7 +72,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						bot.editMessage({
 							channelID: 509149632618823681,
 							messageID: begMessID,
-							message: res.substring(0, res.indexOf(','))
+							message: res.substring(0, res.content.indexOf(','))
 						});
 					});
 						
@@ -99,4 +95,4 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // Just add any case commands if you want to..
          }
      }
-});
+});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
