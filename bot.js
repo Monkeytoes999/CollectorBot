@@ -64,7 +64,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							to: channelID,
 							message: user + ', your begging has been answered. Your lead count has increased by 1'
 						});
-					let begMessID = (tacobell.content.substring(tacobell.content.indexOf(userID) + 19), (tacobell.content.indexOf(userID) + 37));
+					client.log(tacobell.content.substring(tacobell.content.indexOf(userID) + 19), (tacobell.content.indexOf(userID) + 37));
 					bot.getMessage({
 						channelID: '509149632618823681',
 						messageID: begMessID
