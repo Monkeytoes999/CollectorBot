@@ -75,7 +75,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						bot.editMessage({
 							channelID: 509149632618823681,
 							messageID: begMessID,
-							message: parseInt((res.content.substring(0, res.content.indexOf(','))) + 1) + (res.content.substring(res.content.indexOf(',') +1)))
+							message: (parseInt((res.content.substring(0, res.content.indexOf(',')))) + 1) + (res.content.substring(res.content.indexOf(',') +1))
 						});
 					});
 						
