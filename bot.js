@@ -73,20 +73,38 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						console.log('test');
 						console.log((parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1)));
 						bot.editMessage({
-							channelID: 509149632618823681,
+							channelID: '509149632618823681',
 							messageID: begMessID,
 							message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 						});
+					});	
+				} else {
+					bot.sendMesage({
+						to: channelID,
+						message: user + ', please run the "newUser" command to start using this bot'
 					});
-						
 				}
 			});
 				break;
 				case 'LEAD':
+				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+				if (tacobell.content.includes(userID)){
+					let leadMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+					bot.getMessage({
+						channelID: '509149632618823681',
+						messageID: leadMessID
+					}, function (err, res){
 						bot.sendMessage({
 							to: channelID,
-							message: user + ', you currently have ' +  ' lead!'
+							message: user + ', you currently have ' + res.content.substring(0, res.content.indexOf(',')) + ' lead!'
 						});
+					});	
+					} else {
+						bot.sendMesage({
+							to: channelID,
+							message: user + ', please run the "newUser" command to start using this bot'
+						});
+					}
 					break;
 			case 'ORANGE':
 				bot.sendMessage({
