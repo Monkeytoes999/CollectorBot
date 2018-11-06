@@ -29,7 +29,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
 	
-	if (!bot.users[user_id].bot){
+	if (!bot.users[userID].bot){
 	
 	message = message.toUpperCase();
 	
@@ -51,6 +51,27 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			bot.sendMessage({
 				to: '509149632618823681',
 				message: '0, 0, 0, 0, 0, 0, 0, 0'
+			});
+			break;
+		case 'NEWUSER':
+			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+				if (!tacobell.content.includes(userID)){
+					bot.sendMessage({
+						to: 509149632618823681,
+						message: '0, 0, 0, 0, 0, 0, 0, 0'
+					}, function (err, res){
+						bot.editMessage({
+							channelID: '509160162959949825',
+							messageID: '509164727696359444',
+							message: tacobell.content + ' ' + userID + ', ' + res.id
+						});
+					});	
+				} else {
+					bot.sendMesage({
+						to: channelID,
+						message: user + ', you are not a new user of this bot'
+					});
+				}
 			});
 			break;
 		case 'DOTHIS':
