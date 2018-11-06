@@ -53,11 +53,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						channelID: '509149632618823681',
 						messageID: begMessID
 					}, function (err, res){
-						if (parseInt(res.content.substring(0, res.content.indexOf(','))) <= parseInt(message.substring(4))){
+						if (parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
 							bot.editMessage({
 								channelID: '509149632618823681',
 								messageID: begMessID,
-								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4))*2)) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 							}, function (errr, ress){
 								bot.sendMessage({
 									to: channelID,
