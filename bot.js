@@ -57,7 +57,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								channelID: '509149632618823681',
 								messageID: giverMessID
 							}, function (err, res){
-								if (parseInt(res.content.substring(0, res.content.indexOf(','))) > parseInt(message.substring(28))){
+								if (!(parseInt(message.substring(28)) < 1) && parseInt(res.content.substring(0, res.content.indexOf(','))) > parseInt(message.substring(28))){
 									bot.editMessage({
 										channelID: '509149632618823681',
 										messageID: giverMessID,
@@ -66,6 +66,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									bot.sendMessage({
 										to: channelID,
 										message: message.substring(6, 27) + ', ' + user + ' has sent you ' + message.substring(28) + ' lead'
+									});
+								} else if (parseInt(message.substring(28)) < 1){
+									bot.sendMessage({
+										to: channelID,
+										message: 'You can\'t give less than 1 lead silly!'
 									});
 								} else {
 									bot.sendMessage({
