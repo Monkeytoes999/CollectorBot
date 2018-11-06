@@ -48,7 +48,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'NEW_USER':
 			bot.sendMessage({
 				to: '509149632618823681',
-				message: 0, 0, 0, 0, 0, 0, 0, 0
+				message: '0, 0, 0, 0, 0, 0, 0, 0'
 			});
 			break;
 		case 'dothis':
