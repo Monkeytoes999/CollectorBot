@@ -62,6 +62,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			case 'BEG':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+				console.log(tacobell)
 				if (tacobell.includes(userID)){
 						bot.sendMessage({
 							to: channelID,
