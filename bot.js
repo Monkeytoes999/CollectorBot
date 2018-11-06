@@ -41,11 +41,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // !ping
             case 'PING':
 			bot.sendMessage({
-				channelID: channelID,
+				to: channelID,
 				message: message.substring(7, 25)
 			});
 			bot.sendMessage({
-				channelID: channelID,
+				to: channelID,
 				message: parseInt(message.substring(27))
 			});
             break;
