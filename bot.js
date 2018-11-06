@@ -29,13 +29,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
 	
-	if (!bot.users[userID].bot && message.substring(0, 1) == '?'){
-		
 	if (message.substring(0, 1) == '?') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
 	
-	
+	if(bot.users[userID].bot){
+		break;
+	}
 	
 	message = message.toUpperCase();
 	
@@ -146,11 +146,5 @@ bot.on('message', function (user, userID, channelID, message, evt) {
          }
      
 	
-	}
-		} else {
-		bot.sendMessage({
-			to: channelID,
-			message: 'Please do not attempt to use bots with me.'
-		});
 	}
 });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
