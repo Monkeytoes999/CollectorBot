@@ -30,7 +30,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // It will listen for messages that will start with `!`
 	
 	message = message.toUpperCase();
-	
+		
     if (message.substring(0, 1) == '?' && !(bot.users[userID].bot)) {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
@@ -45,6 +45,36 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: '<a:cf:509424634865909787> <:heads:509424625558749185> <:tails:509424611721609227>'
                 });
             break;
+		case 'cf':
+			if (tacobell.content.includes(userID)){
+						bot.sendMessage({
+							to: channelID,
+							message: 'You spent ' + message.substring(4) + 'lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
+						}, function (err, res){
+							bot.editMessage({
+								channelID: channelID,
+								messageID: res
+								message: 'You spent ' + message.substring(4) + 'lead and chose heads. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads! You won '  + (parseInt(message.substring(4))*2)
+							});
+						});
+					let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+					bot.getMessage({
+						channelID: '509149632618823681',
+						messageID: begMessID
+					}, function (err, res){
+						bot.editMessage({
+							channelID: '509149632618823681',
+							messageID: begMessID,
+							message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4))*2)) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+						});
+					});	
+				} else {
+					bot.sendMessage({
+						to: channelID,
+						message: user + ', please run the "newUser" command to start using this bot'
+					});
+				}
+			break;
 		case 'NEW_USER':
 			bot.sendMessage({
 				to: '509149632618823681',
