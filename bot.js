@@ -56,6 +56,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				to: '509160162959949825',
 				message: message.substring(8)
 			});
+			break;
 			case 'BEG':
 				if (user_data[userID] != undefined){
 						bot.sendMessage({
