@@ -99,7 +99,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						});
 					});	
 				} else {
-					bot.sendMesage({
+					bot.sendMessage({
 						to: channelID,
 						message: user + ', please run the "newUser" command to start using this bot'
 					});
