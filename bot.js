@@ -45,7 +45,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: '<a:cf:509424634865909787> <:heads:509424625558749185> <:tails:509424611721609227>'
                 });
             break;
-		case 'cf':
+		case 'CF':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
 						bot.sendMessage({
