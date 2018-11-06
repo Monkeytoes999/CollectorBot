@@ -42,7 +42,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'PING':
                 bot.sendMessage({
                     to: channelID,
-                    message: '<a:coinflip:436677458339823636>'
+                    message: '<a:cf:509424634865909787> <:heads:509424625558749185> <:tails:509424611721609227>'
                 });
             break;
 		case 'NEW_USER':
