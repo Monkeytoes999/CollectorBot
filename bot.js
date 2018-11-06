@@ -60,7 +60,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						to: '509149632618823681',
 						message: '0, 0, 0, 0, 0, 0, 0, 0'
 					}, function (err, res){
-						console.log(res)
 						bot.editMessage({
 							channelID: '509160162959949825',
 							messageID: '509164727696359444',
