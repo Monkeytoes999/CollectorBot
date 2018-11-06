@@ -2,7 +2,6 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var fs = require('fs');
 
-
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -51,7 +50,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message: '0, 0, 0, 0, 0, 0, 0, 0'
 			});
 			break;
-		case 'dothis':
+		case 'DOTHIS':
 			bot.sendMessage({
 				to: '509160162959949825',
 				message: message.substring(8)
