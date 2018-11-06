@@ -43,15 +43,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-				if (!tacobell.content.includes(userID)){
+				if (tacobell.content.includes(userID)){
 					console.log(message)
 				} else {
 					bot.sendMessage({
 						to: channelID,
-						message: user + ', you are not a new user of this bot'
+						message: user + ', please run the "newUser" command to start using this bot'
 					});
 				}
 			});
+			break;
 		case 'COINFLIP':
 		case 'CF':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
