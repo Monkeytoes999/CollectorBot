@@ -40,7 +40,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
-			console.log(parseInt('abc') == undefined)
+			console.log(parseInt('abc') > 0)
+			console.log(parseInt('200') > 0)
                 bot.sendMessage({
                     to: channelID,
                     message: parseInt('abc')
@@ -160,7 +161,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									});
 								}
 							}
-						} else if(parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))) {
+						} else if(parseInt(res.content.substring(0, res.content.indexOf(','))) < parseInt(message.substring(4))) {
 							bot.sendMessage({
 								to: channelID,
 								message: 'You can\'t bet more lead than you own ' + user + '!'
