@@ -42,7 +42,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'PING':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Pong!'
+                    message: '<a:affa:436677458339823636>'
                 });
             break;
 		case 'NEW_USER':
