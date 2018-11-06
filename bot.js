@@ -40,12 +40,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
-			console.log(parseInt('abc') > 0)
-			console.log(parseInt('200') > 0)
-                bot.sendMessage({
-                    to: channelID,
-                    message: parseInt('abc')
-                });
+			bot.editMessage({
+				channelID: '509149632618823681',
+				messageID: '509161625413222400',
+				message: '250, 0, 0, 0, 0, 0, 0, 0'
+			});
+			bot.editMessage({
+				channelID: '509149632618823681',
+				messageID: '509198004327022603',
+				message: '250, 0, 0, 0, 0, 0, 0, 0'
+			});
             break;
 		case 'COINFLIP':
 		case 'CF':
