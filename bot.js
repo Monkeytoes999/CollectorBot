@@ -72,7 +72,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						bot.editMessage({
 							channelID: 509149632618823681,
 							messageID: begMessID,
-							message: res.substring(0, res.content.indexOf(','))
+							message: res.content.substring(0, res.content.indexOf(','))
 						});
 					});
 						
