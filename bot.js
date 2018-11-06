@@ -62,7 +62,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							to: channelID,
 							message: user + ', your begging has been answered. Your lead count has increased by 1'
 						});
-					});
 				}
 				break;
 				case 'LEAD':
