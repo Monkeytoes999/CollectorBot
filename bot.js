@@ -44,7 +44,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
-					console.log(evt.mentions)
+					console.log(evt)
 				} else {
 					bot.sendMessage({
 						to: channelID,
