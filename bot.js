@@ -64,16 +64,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							to: channelID,
 							message: user + ', your begging has been answered. Your lead count has increased by 1'
 						});
-					console.log(tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 37)));
-					let begMessID = '509161596023603211';
+					let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 					bot.getMessage({
 						channelID: '509149632618823681',
 						messageID: begMessID
 					}, function (err, res){
+						console.log(res);
+						console.log('test');
+						console.log((res.content.substring(0, res.content.indexOf(',') + 1 , res.content.substring(res.content.indexOf(',') +1))));
 						bot.editMessage({
 							channelID: 509149632618823681,
 							messageID: begMessID,
-							message: res.content.substring(0, res.content.indexOf(','))
+							message: (res.content.substring(0, res.content.indexOf(',') + 1 , res.content.substring(res.content.indexOf(',') +1))
 						});
 					});
 						
