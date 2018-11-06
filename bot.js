@@ -29,17 +29,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
 	
-	if (message.substring(0, 1) == '?') {
-        var args = message.substring(1).split(' ');
-        var cmd = args[0];
-	
-	if(bot.users[userID].bot){
-		break;
-	}
-	
 	message = message.toUpperCase();
 	
-    
+    if (message.substring(0, 1) == '?' && !(bot.users[userID].bot)) {
+        var args = message.substring(1).split(' ');
+        var cmd = args[0];
 		
        
         args = args.splice(1);
@@ -64,6 +58,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						to: '509149632618823681',
 						message: '0, 0, 0, 0, 0, 0, 0, 0'
 					}, function (err, res){
+						console.log(res)
 						bot.editMessage({
 							channelID: '509160162959949825',
 							messageID: '509164727696359444',
@@ -144,7 +139,5 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
             // Just add any case commands if you want to..
          }
-     
-	
-	}
+     }
 });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
