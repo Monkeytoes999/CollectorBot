@@ -1,8 +1,6 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var fs = require('fs');
-var tacobell = '';
-var useData = '';
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -44,7 +42,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
-					if (message.length > 28){
+					let validSyn = true;
+					for(var i = 28; i < message.length; i++){
+						if ((message.charCodeAt(i, i+1) < 48 || message.charCodeAt(i, i+1) > 57) && message.substring(i, i+1) != ' '){
+							validSyn = false;
+						}
+					}
+					if (message.length > 28 && validSyn){
 						if (tacobell.content.includes(message.substring(8, 26)) && message.substring(8, 26) != userID){
 							let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(8, 26)) + 20), (tacobell.content.indexOf(message.substring(8, 26)) + 38)));
@@ -53,10 +57,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								messageID: giverMessID
 							}, function (err, res){
 								if (!(parseInt(message.substring(28)) < 1) && parseInt(res.content.substring(0, res.content.indexOf(','))) > parseInt(message.substring(28))){
+									let karmaMess = res.content.substring(res.content.indexOf(',') + 2);
 									bot.editMessage({
 										channelID: '509149632618823681',
 										messageID: giverMessID,
-										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(28))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(28))) + ', ' + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(28))) + (res.content.substring(karmaMess.indexOf(',')))
 									});
 									bot.sendMessage({
 										to: channelID,
@@ -97,10 +102,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								message: user + ', the user you tried to give to has no data with this bot.'
 							});
 						}
-					} else {
+					} else if(validSyn) {
 						bot.sendMessage({
 							to: channelID,
 							message: 'Invalid Args!'
+						});
+					} else {
+						bot.sendMessage({
+							to: channelID,
+							message: 'Invalid Syntax!'
 						});
 					}
 				} else {
