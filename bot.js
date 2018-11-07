@@ -38,6 +38,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
             case 'PING':
+			bot.editMessage({
+				channelID: '509149632618823681',
+				messageID: '509161596023603211',
+				message: '100000, 0, 0, 0, 0, 0, 0, 0'
+			});
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
@@ -64,7 +69,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									bot.editMessage({
 										channelID: '509149632618823681',
 										messageID: giverMessID,
-										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(28))) + ', ' + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(28))) + (res.content.substring(karmaMess.indexOf(',')))
+										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(28))) + ', ' + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(28))) + (karmaMess.substring(karmaMess.indexOf(',')))
 									});
 									bot.sendMessage({
 										to: channelID,
