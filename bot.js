@@ -137,13 +137,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					let canCF = true;
 					if (message.substring(0, 9) == '?COINFLIP'){
 						for(var i = 10; i < message.length; i++){
-							if (message.substring(i, i+1) < 0 && message.substring(i, i+1) != ' '){
+							if ((message.charCodeAt(i, i+1) < 48 || message.charCodeAt(i, i+1) > 57) && message.substring(i, i+1) != ' '){
 								canCF = false;
 							}
 						}
 					} else {
 						for (var i = 4; i < message.length; i++){
-						     if (message.substring(i, i+1) < 0 && message.substring(i, i+1) != ' '){
+						     if ((message.charCodeAt(i, i+1) < 48 || message.charCodeAt(i, i+1) > 57) && message.substring(i, i+1) != ' '){
 								canCF = false;
 							}
 						}
