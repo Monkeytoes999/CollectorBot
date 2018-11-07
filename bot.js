@@ -299,30 +299,37 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
-			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-				if (tacobell.content.includes(userID)){
+			if (message.length > 4){
+				bot.sendMessage({
+					to: channelID,
+					message: 'Invalid Syntax!'
+				});
+				} else {
+				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+					if (tacobell.content.includes(userID)){
+							bot.sendMessage({
+								to: channelID,
+								message: user + ', your begging has been answered. Your lead count has increased by 1'
+							});
+						let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+						bot.getMessage({
+							channelID: '509149632618823681',
+							messageID: begMessID
+						}, function (err, res){
+							bot.editMessage({
+								channelID: '509149632618823681',
+								messageID: begMessID,
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+							});
+						});	
+					} else {
 						bot.sendMessage({
 							to: channelID,
-							message: user + ', your begging has been answered. Your lead count has increased by 1'
+							message: user + ', please run the "newUser" command to start using this bot'
 						});
-					let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
-					bot.getMessage({
-						channelID: '509149632618823681',
-						messageID: begMessID
-					}, function (err, res){
-						bot.editMessage({
-							channelID: '509149632618823681',
-							messageID: begMessID,
-							message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1))
-						});
-					});	
-				} else {
-					bot.sendMessage({
-						to: channelID,
-						message: user + ', please run the "newUser" command to start using this bot'
-					});
+					}
+				});
 				}
-			});
 				break;
 				case 'LEAD':
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
