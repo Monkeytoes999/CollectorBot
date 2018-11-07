@@ -58,6 +58,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							}, function (err, res){
 								if (!(parseInt(message.substring(28)) < 1) && parseInt(res.content.substring(0, res.content.indexOf(','))) > parseInt(message.substring(28))){
 									let karmaMess = res.content.substring(res.content.indexOf(',') + 2);
+									console.log(karmaMess)
+									console.log('^')
+									console.log(
 									bot.editMessage({
 										channelID: '509149632618823681',
 										messageID: giverMessID,
