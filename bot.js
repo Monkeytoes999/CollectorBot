@@ -86,6 +86,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // !ping
 		case 'PING':
 			let uMID = userMessageID(userID)
+			console.log(uMID)
 			bot.sendMessage({
 				to: channelID,
 				message: 'Lead: ' + getLeadAmount(uMID)
