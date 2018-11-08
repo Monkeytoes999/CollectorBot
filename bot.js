@@ -25,6 +25,7 @@ function userMessageID(userID) {
 		output = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)))
 		console.log(bad)
 	});
+	console.log(output)
 	return output
 }
 function getLeadAmount(messID){
