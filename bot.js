@@ -20,29 +20,32 @@ var bot = new Discord.Client({
 
 
 function userMessageID(userID) {
+	let output = ''
 	bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-		let output = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)))
-	 	return output
+		output = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)))
 	});
+	return output
 }
 function getLeadAmount(messID){
+	let output = ''
 	bot.getMessage({
 		channelID: '509149632618823681',
 		messageID: messID
 	}, function (errr, ress){
-		let output = parseInt(ress.content.substring(0, ress.content.indexOf(',')))
-		return output
+		output = parseInt(ress.content.substring(0, ress.content.indexOf(',')))
 	});
+	return output
 }
 function getKarmaAmount(messID){
+	let karmaGetting = '';
 	bot.getMessage({
 		channelID: '509149632618823681',
 		messageID: messID
 	}, function (errr, ress){
-		let karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
-		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(',')))
-		return karmaGetting;
+		karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
+		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(','));
 	});
+	return karmaGetting;
 }
 
 
