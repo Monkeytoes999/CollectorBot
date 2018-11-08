@@ -40,7 +40,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							let karmaCuss = parseInt(cussMess.substring(0, cussMess.indexOf(','))) - 1;
 							if (karmaCuss < 1) karmaCuss = 0;
 							bot.editMessage({
-								channelID: '',
+								channelID: '509149632618823681',
 								messageID: cussMessID,
 								message: res.content.substring(0, res.content.indexOf(',') + 2) + karmaCuss + cussMess.substring(cussMess.indexOf(','))
 							});
@@ -303,7 +303,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						let karmLoc = res.content.substring(res.content.indexOf(',') + 2);
 						bot.sendMessage({
 							to: channelID,
-							message: user + ', you currently have ' + res.content.substring(0, karmLoc.indexOf(',')) + ' karma!'
+							message: user + ', you currently have ' + karmLoc.substring(0, karmLoc.indexOf(',')) + ' karma!'
 						});
 					});	
 				} else {
