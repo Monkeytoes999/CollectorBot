@@ -93,7 +93,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			bot.sendMessage({
 				to: channelID,
 				meaage: 'Karma: ' + getKarmaAmount(uMID)
-			
+			});
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
