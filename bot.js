@@ -36,7 +36,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							channelID: '509149632618823681',
 							messageID: cussMessID
 						}, function (err, res){
-							let cussMess = res.content.substring(res.indexOf(',') + 2);
+							let cussMess = res.content.substring(res.content.indexOf(',') + 2);
 							let karmaCuss = parseInt(cussMess.substring(0, cussMess.indexOf(','))) - 1;
 							if (karmaCuss < 1) karmaCuss = 0;
 							bot.editMessage({
