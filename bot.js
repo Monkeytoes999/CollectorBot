@@ -42,7 +42,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							bot.editMessage({
 								channelID: '',
 								messageID: cussMessID,
-								message: res.content.substring(0, res.indexOf(',') + 2) + karmaCuss + cussMess.substring(cussMess.indexOf(','))
+								message: res.content.substring(0, res.content.indexOf(',') + 2) + karmaCuss + cussMess.substring(cussMess.indexOf(','))
 							});
 						});	
 			}
@@ -292,6 +292,26 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				}
 			});
 			break;
+		case 'KARMA':
+			if (tacobell.content.includes(userID)){
+					let leadMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+					bot.getMessage({
+						channelID: '509149632618823681',
+						messageID: leadMessID
+					}, function (err, res){
+						let karmLoc = res.content.substring(res.content.indexOf(',') + 2);
+						bot.sendMessage({
+							to: channelID,
+							message: user + ', you currently have ' + res.content.substring(0, karmLoc.indexOf(',')) + ' karma!'
+						});
+					});	
+					} else {
+						bot.sendMessage({
+							to: channelID,
+							message: user + ', please run the "newUser" command to start using this bot'
+						});
+					}
+				});
 		case 'NEW_USER':
 			bot.sendMessage({
 				to: '509149632618823681',
