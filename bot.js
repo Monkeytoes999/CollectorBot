@@ -125,9 +125,59 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			bot.sendMessage({
-				to: channelID,
-				message: 'HMS: ' + hoursUntil + ' ' + minutesUntil + ' ' + secondsUntil
+			393586279964475393, 509161596023603211;
+336507246227881984, 509161613925023754;
+458809225120972800, 509161625413222400;
+193104123506196481, 509161637815517184; 
+			486985623161274378, 509198004327022603 485628261494292505, 509456912337731615 194966921362407424, 509456917266038785
+			bot.getMessage({ channelID: channelID, messageID: '509161596023603211' }, function (err, res){
+			bot.editMessage({
+				channelID: channelID,
+				messageID: res.id,
+				message: res.content + ', 0'
+			});
+			});
+			bot.getMessage({ channelID: channelID, messageID: '509161613925023754' }, function (err, res){
+			bot.editMessage({
+				channelID: channelID,
+				messageID: res.id,
+				message: res.content + ', 0'
+			});
+			});
+			bot.getMessage({ channelID: channelID, messageID: '509161637815517184' }, function (err, res){
+			bot.editMessage({
+				channelID: channelID,
+				messageID: res.id,
+				message: res.content + ', 0'
+			});
+			});
+			bot.getMessage({ channelID: channelID, messageID: '509198004327022603' }, function (err, res){
+			bot.editMessage({
+				channelID: channelID,
+				messageID: res.id,
+				message: res.content + ', 0'
+			});
+			});
+			bot.getMessage({ channelID: channelID, messageID: '509161625413222400' }, function (err, res){
+			bot.editMessage({
+				channelID: channelID,
+				messageID: res.id,
+				message: res.content + ', 0'
+			});
+			});
+			bot.getMessage({ channelID: channelID, messageID: '509456912337731615' }, function (err, res){
+			bot.editMessage({
+				channelID: channelID,
+				messageID: res.id,
+				message: res.content + ', 0'
+			});
+			});
+			bot.getMessage({ channelID: channelID, messageID: '509456917266038785' }, function (err, res){
+			bot.editMessage({
+				channelID: channelID,
+				messageID: res.id,
+				message: res.content + ', 0'
+			});
 			});
             break;
 		case 'GIVE':
@@ -400,7 +450,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						bot.editMessage({
 							channelID: '509160162959949825',
 							messageID: '509164727696359444',
-							message: tacobell.content + ' ' + userID + ', ' + res.id
+							message: tacobell.content + ' ' + userID + ', ' + res.id + ';'
 						});
 						bot.sendMessage({
 							to: channelID,
