@@ -44,7 +44,7 @@ function getKarmaAmount(messID){
 		messageID: messID
 	}, function (errr, ress){
 		karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
-		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(','));
+		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(',')));
 	});
 	return karmaGetting;
 }
