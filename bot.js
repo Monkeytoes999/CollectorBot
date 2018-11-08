@@ -1,6 +1,33 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var fs = require('fs');
+var prevDay;
+var day;
+
+function userMessageID(userID) {
+	bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+	 	return  (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+	});
+}
+function getLeadAmount(messID){
+	bot.getMessage({
+		channelID: '509149632618823681',
+		messageID: messID
+	}, function (errr, ress){
+		return parseInt(ress.content.substring(0, ress.content.indexOf(',')))
+	});
+}
+function getKarmaAmount(messID){
+	bot.getMessage({
+		channelID: '509149632618823681',
+		messageID: messID
+	}, function (errr, ress){
+		let karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
+		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(',')))
+		return karmaGetting;
+	});
+}
+
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -58,6 +85,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
+			let uMID = userMessageID(userID)
+			bot.sendMessage({
+				to: channelID,
+				message: 'Lead: ' + getLeadAmount(uMID)
+			});
+			bot.sendMessage({
+				to: channelID,
+				meaage: 'Karma: ' + getKarmaAmount(uMID)
+			
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
