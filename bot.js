@@ -20,34 +20,49 @@ var bot = new Discord.Client({
 
 
 function userMessageID(userID) {
-	let output = ''
-	bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-		output = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)))
-		console.log(bad)
-	});
-	console.log(output)
-	return output
+	return new Promise((resolve, reject) => {
+        bot.getMessage({
+            channelID: '509160162959949825', 
+            messageID: '509164727696359444' 
+        }, function (err,res){
+            if (err) {
+                reject();
+            }
+            let output = (res.content.substring((res.content.indexOf(userID) + 20), (res.content.indexOf(userID) + 38)));
+            resolve(output);
+        })
+    })
 }
 function getLeadAmount(messID){
-	let output = ''
-	bot.getMessage({
-		channelID: '509149632618823681',
-		messageID: messID
-	}, function (errr, ress){
-		output = parseInt(ress.content.substring(0, ress.content.indexOf(',')))
-	});
-	return output
+	return new Promise((resolve, reject) => {
+        bot.getMessage({
+            channelID: '509149632618823681', 
+            messageID: messID
+        }, function (err,res){
+            if (err) {
+                reject();
+                return; // actually not sure if return is needed tbh
+            }
+            let output = parseInt(res.content.substring(0, res.content.indexOf(',')));
+            resolve(output);
+        })
+    })
 }
 function getKarmaAmount(messID){
-	let karmaGetting = '';
-	bot.getMessage({
-		channelID: '509149632618823681',
-		messageID: messID
-	}, function (errr, ress){
-		karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
+	return new Promise((resolve, reject) => {
+        bot.getMessage({
+            channelID: '509149632618823681', 
+            messageID: messID
+        }, function (err,res){
+            if (err) {
+                reject();
+                return; // actually not sure if return is needed tbh
+	    }
+		let karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
 		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(',')));
-	});
-	return karmaGetting;
+            resolve(karmaGetting);
+        })
+    })
 }
 
 
