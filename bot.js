@@ -78,7 +78,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									}, function (errr, ress){
 										if (parseInt(ress.content.substring(0, ress.content.indexOf(','))) > parseInt(message.substring(28))){
 											let karmaRecMess = ress.content.substring(ress.content.indexOf(',') + 2);
-											let endKarma = (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(28)))
+											let endKarma = (parseInt(karmaRecMess.substring(0, karmaRecMess.indexOf(','))) - parseInt(message.substring(28)))
 											if (endKarma < 1) endKarma = 0;
 											bot.editMessage({
 												channelID: '509149632618823681',
