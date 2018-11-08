@@ -24,7 +24,7 @@ var bot = new Discord.Client({
 bot.on('any', function(event) {
     if (true){
 			let thisHour = (thisTime.getHours() - 5);
-	    		let thisMinute = thisTime.getMintues()
+	    		let thisMinute = thisTime.getMinutes()
 			let thisSecond = thisTime.getSeconds()
 			if (thisHour < 0){
 				thisHour = 24 + thisHour;
