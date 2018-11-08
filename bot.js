@@ -25,9 +25,7 @@ function userMessageID(userID) {
             channelID: '509160162959949825', 
             messageID: '509164727696359444' 
         }, function (err,res){
-            if (err) {
-                reject();
-            }
+            if(err) return reject(err);
             let output = (res.content.substring((res.content.indexOf(userID) + 20), (res.content.indexOf(userID) + 38)));
             resolve(output);
         })
@@ -39,10 +37,7 @@ function getLeadAmount(messID){
             channelID: '509149632618823681', 
             messageID: messID
         }, function (err,res){
-            if (err) {
-                reject();
-                return; // actually not sure if return is needed tbh
-            }
+            if(err) return reject(err);
             let output = parseInt(res.content.substring(0, res.content.indexOf(',')));
             resolve(output);
         })
@@ -54,10 +49,7 @@ function getKarmaAmount(messID){
             channelID: '509149632618823681', 
             messageID: messID
         }, function (err,res){
-            if (err) {
-                reject();
-                return; // actually not sure if return is needed tbh
-	    }
+            if(err) return reject(err);
 		let karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
 		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(',')));
             resolve(karmaGetting);
