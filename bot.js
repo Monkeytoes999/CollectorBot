@@ -23,6 +23,7 @@ function userMessageID(userID) {
 	let output = ''
 	bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 		output = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)))
+		console.log(bad)
 	});
 	return output
 }
