@@ -42,6 +42,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				channelID: '509149632618823681',
 				messageID: '509161596023603211',
 				message: '100000, 0, 0, 0, 0, 0, 0, 0'
+			});
             break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
