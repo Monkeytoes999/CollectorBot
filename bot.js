@@ -28,11 +28,31 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // It will listen for messages that will start with `!`
 	
 	message = message.toUpperCase();
-		
+	if (userID == '495705429150793739' && channelID == '509920937093890058'){
+		bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+			if (tacobell.content.includes(message)){
+					let cussMessID = (tacobell.content.substring((tacobell.content.indexOf(message) + 20), (tacobell.content.indexOf(message) + 38)));
+						bot.getMessage({
+							channelID: '509149632618823681',
+							messageID: cussMessID
+						}, function (err, res){
+							let cussMess = res.content.substring(res.indexOf(',') + 2);
+							let karmaCuss = parseInt(cussMess.substring(0, cussMess.indexOf(','))) - 1;
+							if (karmaCuss < 1) karmaCuss = 0;
+							bot.editMessage({
+								channelID: '',
+								messageID: cussMessID,
+								message: res.content.substring(0, res.indexOf(',') + 2) + karmaCuss + cussMess.substring(cussMess.indexOf(','))
+							});
+						});	
+			}
+		});
+	}
+	
     if (message.substring(0, 1) == '?' && !(bot.users[userID].bot)) {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
-		
+	
        
         args = args.splice(1);
         switch(cmd) {
