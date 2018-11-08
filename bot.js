@@ -7,6 +7,8 @@ var hoursUntil = '';
 var minutesUntil = '';
 var secondsUntil = '';
 var thisTime = new Date();
+var monthNumbers = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
 
 
 // Configure logger settings
@@ -24,10 +26,15 @@ var bot = new Discord.Client({
 bot.on('any', function(event) {
     if (true){
 			let thisHour = (thisTime.getHours() - 5);
+	    		let thisDay = thisTime.getDate();
 	    		let thisMinute = thisTime.getMinutes()
 			let thisSecond = thisTime.getSeconds()
 			if (thisHour < 0){
 				thisHour = 24 + thisHour;
+				thisDay = thisDay - 1;
+			}
+	  		if (thisDay < 1){
+				thisDay = monthNumbers[thisTime.getMonth()];
 			}
 	    hoursUntil = (23 - thisHour);
 	    minutesUntil = (59 - thisMinute);
