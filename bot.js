@@ -76,17 +76,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										channelID: '509149632618823681',
 										messageID: recieverMessID
 									}, function (errr, ress){
-										if (parseInt(ress.content.substring(0, ress.content.indexOf(','))) > parseInt(message.substring(28))){
 											let karmaRecMess = ress.content.substring(ress.content.indexOf(',') + 2);
 											let endKarma = (parseInt(karmaRecMess.substring(0, karmaRecMess.indexOf(','))) - parseInt(message.substring(28)))
 											if (endKarma < 1) endKarma = 0;
-											console.log((parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(28))))
 											bot.editMessage({
 												channelID: '509149632618823681',
 												messageID: recieverMessID,
 												message: (parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(28))) + ', ' + endKarma + (karmaRecMess.substring(karmaRecMess.indexOf(',')))
 											});
-										}
 									});
 								} else if (parseInt(message.substring(28)) < 1){
 									bot.sendMessage({
