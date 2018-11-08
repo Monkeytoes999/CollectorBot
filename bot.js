@@ -3,7 +3,10 @@ var logger = require('winston');
 var fs = require('fs');
 var prevDay;
 var day;
-
+var hoursUntil = '';
+var minutesUntil = '';
+var secondsUntil = '';
+var thisTime = new Date();
 
 
 // Configure logger settings
@@ -18,6 +21,22 @@ var bot = new Discord.Client({
    autorun: true
 });
 
+bot.on('any', function(event) {
+    if (true){
+			let thisHour = (thisTime.getHours() - 5);
+	    		let thisMinute = thisTime.getMintues()
+			let thisSecond = thisTime.getSeconds()
+			if (thisHour < 0){
+				thisHour = 24 + thisHour;
+			}
+	    hoursUntil = (23 - thisHour);
+	    minutesUntil = (59 - thisMinute);
+	    secondsUntil = (59 - thisSecond);
+		
+		prevDay = day;
+		day = thisDay;
+    }
+});
 
 function userMessageID(userID) {
 	return new Promise((resolve, reject) => {
@@ -99,15 +118,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			let uMID = userMessageID(userID)
-			console.log(uMID)
 			bot.sendMessage({
 				to: channelID,
-				message: 'Lead: ' + getLeadAmount(uMID)
-			});
-			bot.sendMessage({
-				to: channelID,
-				meaage: 'Karma: ' + getKarmaAmount(uMID)
+				message: 'HMS: ' + hoursUntil + ' ' + minutesUntil + ' ' + secondsUntil
 			});
             break;
 		case 'GIVE':
