@@ -293,7 +293,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 		case 'KARMA':
-			if (tacobell.content.includes(userID)){
+			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell)
+				if (tacobell.content.includes(userID)){
 					let leadMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 					bot.getMessage({
 						channelID: '509149632618823681',
@@ -305,13 +306,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							message: user + ', you currently have ' + res.content.substring(0, karmLoc.indexOf(',')) + ' karma!'
 						});
 					});	
-					} else {
-						bot.sendMessage({
-							to: channelID,
-							message: user + ', please run the "newUser" command to start using this bot'
-						});
-					}
-				});
+				} else {
+					bot.sendMessage({
+						to: channelID,
+						message: user + ', please run the "newUser" command to start using this bot'
+					});
+				}
+			});
+			break;
 		case 'NEW_USER':
 			bot.sendMessage({
 				to: '509149632618823681',
