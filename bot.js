@@ -4,6 +4,21 @@ var fs = require('fs');
 var prevDay;
 var day;
 
+
+
+// Configure logger settings
+logger.remove(logger.transports.Console);
+logger.add(new logger.transports.Console, {
+    colorize: true
+});
+logger.level = 'debug';
+// Initialize Discord Bot
+var bot = new Discord.Client({
+   token: process.env.token,
+   autorun: true
+});
+
+
 function userMessageID(userID) {
 	bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 		let output = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)))
@@ -29,21 +44,6 @@ function getKarmaAmount(messID){
 		return karmaGetting;
 	});
 }
-
-
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(new logger.transports.Console, {
-    colorize: true
-});
-logger.level = 'debug';
-// Initialize Discord Bot
-var bot = new Discord.Client({
-   token: process.env.token,
-   autorun: true
-});
-
-
 
 
 bot.on('ready', function (evt) {
@@ -227,7 +227,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								if (hORt == 'heads'){
 									if ((Math.floor(Math.random() * 2)) == 1){
 										bot.editMessage({
-											channelID: '509149632618823681',
 											messageID: begMessID,
 											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 										}, function (errr, ress){
