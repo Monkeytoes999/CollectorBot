@@ -6,7 +6,7 @@ var day;
 
 function userMessageID(userID) {
 	bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-		console.log((tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38))))
+		let output = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)))
 	 	return  (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 	});
 }
@@ -15,7 +15,8 @@ function getLeadAmount(messID){
 		channelID: '509149632618823681',
 		messageID: messID
 	}, function (errr, ress){
-		return parseInt(ress.content.substring(0, ress.content.indexOf(',')))
+		let output = parseInt(ress.content.substring(0, ress.content.indexOf(',')))
+		return output
 	});
 }
 function getKarmaAmount(messID){
