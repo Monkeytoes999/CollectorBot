@@ -270,13 +270,21 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							channelID: '509149632618823681',
 							messageID: begMessID
 						}, function (err, res){
-							if (0 < parseInt(message.substring(4)) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
+							if (0 < parseInt(message.substring(message.indexOf(' ')) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
 								if (hORt == 'heads'){
+									console.log('heads ran');
 									if ((Math.floor(Math.random() * 2)) == 1){
+										console.log('heads win ran');
+										console.log(parseInt(res.content.substring(0, res.content.indexOf(','))));
+										console.log(parseInt(message.substring(4)));
+										console.log(parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4))))
+										console.log((parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1)));
+
 										bot.editMessage({
 											messageID: begMessID,
 											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 										}, function (errr, ress){
+											console.log('message edit ran');
 											bot.sendMessage({
 												to: channelID,
 												message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
