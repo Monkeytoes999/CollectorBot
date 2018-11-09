@@ -104,6 +104,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
+			bot.editMessage({
+				channelID: channelID,
+				messageID: '509161596023603211',
+				message: '2500, 0, 0, 0, 0, 0, 0, 0, 0'
+			});
             break;
 		case 'DAILY':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
@@ -396,7 +401,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'NEW_USER':
 			bot.sendMessage({
 				to: '509149632618823681',
-				message: '0, 0, 0, 0, 0, 0, 0, 0'
+				message: '0, 0, 0, 0, 0, 0, 0, 0, 0'
 			});
 			break;
 		case 'NEWUSER':
@@ -404,7 +409,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				if (!tacobell.content.includes(userID)){
 					bot.sendMessage({
 						to: '509149632618823681',
-						message: '0, 0, 0, 0, 0, 0, 0, 0'
+						message: '0, 0, 0, 0, 0, 0, 0, 0, 0'
 					}, function (err, res){
 						bot.editMessage({
 							channelID: '509160162959949825',
