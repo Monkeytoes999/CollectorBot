@@ -126,7 +126,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						} else {
 							bot.sendMessage({
 								to: channelID,
-								message: 'OOF ' + user + '! You can\'t collect your daily lead for another ' + hoursUntil + ' hours, ' + minutesUntil + ' minutes, and ' + secondsUntil + 'seconds!'
+								message: 'OOF ' + user + '! You can\'t collect your daily lead for another ' + hoursUntil + ' hours, ' + minutesUntil + ' minutes, and ' + secondsUntil + ' seconds!'
 							});
 						}
 					});
