@@ -108,15 +108,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'DAILY':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
-					let dailyMess = res.content.substring(res.content.indexOf(',') + 2);
+					let dailyMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 					bot.getMessage({
 						channelID: '509149632618823681',
-						messageID: dailyMess
+						messageID: dailyMessID
 					}, function (err, res) {
 						if (parseInt(res.content.substring(res.content.length - 1)) == 0){
 							bot.editMessage({
 								channelID: '509149632618823681',
-								messageID: dailyMess,
+								messageID: dailyMessID,
 								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 150) + res.content.substring(res.content.indexOf(',', res.content.length - 1)) + '1'
 							});
 							bot.sendMessage({
