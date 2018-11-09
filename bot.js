@@ -156,38 +156,44 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}
 					if (message.length > 28 && validSyn){
 						console.log(message.substring(8,26));
-						if (tacobell.content.includes(message.substring(8, 26)) && message.substring(8, 26) != userID){
+						let userrcID = 8;
+						let subofGive = 28;
+						if (message.includes('<@!')){
+							userrcID = 9;
+							subofGive = 29;
+						}
+						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(8, 26) != userID){
 							let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
-							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(8, 26)) + 20), (tacobell.content.indexOf(message.substring(8, 26)) + 38)));
+							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.getMessage({
 								channelID: '509149632618823681',
 								messageID: giverMessID
 							}, function (err, res){
-								if (!(parseInt(message.substring(28)) < 1) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(28))){
+								if (!(parseInt(message.substring(subofGive)) < 1) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(28))){
 									let karmaMess = res.content.substring(res.content.indexOf(',') + 2);
 									bot.editMessage({
 										channelID: '509149632618823681',
 										messageID: giverMessID,
-										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(28))) + ', ' + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(28))) + (karmaMess.substring(karmaMess.indexOf(',')))
+										message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - parseInt(message.substring(subofGive))) + ', ' + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(subofGive))) + (karmaMess.substring(karmaMess.indexOf(',')))
 									});
 									bot.sendMessage({
 										to: channelID,
-										message: message.substring(6, 27) + ', ' + user + ' has sent you ' + message.substring(28) + '<:lead:509862462712053762>lead'
+										message: message.substring(userrcID - 3, subofGive - 1) + ', ' + user + ' has sent you ' + message.substring(subofGive) + '<:lead:509862462712053762>lead'
 									});
 									bot.getMessage({
 										channelID: '509149632618823681',
 										messageID: recieverMessID
 									}, function (errr, ress){
 											let karmaRecMess = ress.content.substring(ress.content.indexOf(',') + 2);
-											let endKarma = (parseInt(karmaRecMess.substring(0, karmaRecMess.indexOf(','))) - parseInt(message.substring(28)))
+											let endKarma = (parseInt(karmaRecMess.substring(0, karmaRecMess.indexOf(','))) - parseInt(message.substring(subofGive)))
 											if (endKarma < 1) endKarma = 0;
 											bot.editMessage({
 												channelID: '509149632618823681',
 												messageID: recieverMessID,
-												message: (parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(28))) + ', ' + endKarma + (karmaRecMess.substring(karmaRecMess.indexOf(',')))
+												message: (parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(subofGive))) + ', ' + endKarma + (karmaRecMess.substring(karmaRecMess.indexOf(',')))
 											});
 									});
-								} else if (parseInt(message.substring(28)) < 1){
+								} else if (parseInt(message.substring(subofGive)) < 1){
 									bot.sendMessage({
 										to: channelID,
 										message: 'You can\'t give less than 1 lead silly!'
@@ -199,7 +205,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									});
 								}
 							});
-						} else if (message.substring(8, 26) == userID){
+						} else if (message.substring(userrcID, userrcID + 18) == userID){
 							bot.sendMessage({
 								to: channelID,
 								message: user + ', you can\'t send money to yourself!'
