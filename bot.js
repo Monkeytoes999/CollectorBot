@@ -121,7 +121,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							});
 							bot.sendMessage({
 								to: channelID,
-								message: user + ', you have collected your daily 150 <:lead:509862462712053762>lead!
+								message: user + ', you have collected your daily 150 <:lead:509862462712053762>lead!'
 							});
 						} else {
 							bot.sendMessage({
