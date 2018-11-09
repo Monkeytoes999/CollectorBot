@@ -106,8 +106,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'PING':
 			bot.editMessage({
 				channelID: channelID,
-				messageID: '509161596023603211',
-				message: '2500, 0, 0, 0, 0, 0, 0, 0, 0'
+				messageID: '509456912337731615',
+				message: '2500, 0, 0, 0, 0, 0, 0, 0, 1'
 			});
             break;
 		case 'DAILY':
