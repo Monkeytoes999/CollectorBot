@@ -155,7 +155,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						}
 					}
 					if (message.length > 28 && validSyn){
-						console.log(message.substring(8,26);
+						console.log(message.substring(8,26));
 						if (tacobell.content.includes(message.substring(8, 26)) && message.substring(8, 26) != userID){
 							let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(8, 26)) + 20), (tacobell.content.indexOf(message.substring(8, 26)) + 38)));
