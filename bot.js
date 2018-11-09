@@ -155,14 +155,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						}
 					}
 					if (message.length > 28 && validSyn){
-						console.log(message.substring(8,26));
 						let userrcID = 8;
 						let subofGive = 28;
 						if (message.includes('<@!')){
 							userrcID = 9;
 							subofGive = 29;
 						}
-						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(userrcID, userrcID) != userID){
+						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(userrcID, userrcID + 18) != userID){
 							let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.getMessage({
