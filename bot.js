@@ -52,7 +52,7 @@ bot.on('any', function(event) {
 					    bot.editMessage({
 						    channelID: '509149632618823681',
 						    messageID: tacobell.substring(i, i + 18),
-						    message: res.content.substring(res.content.indexOf(0, res.content.length - 2)) + '0'
+						    message: res.content.substring(res.content.indexOf(','), res.content.length - 1) + '0'
 					});
 				    });
 			    }
@@ -122,7 +122,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							bot.editMessage({
 								channelID: '509149632618823681',
 								messageID: dailyMessID,
-								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + parseInt('150')) + res.content.substring(res.content.indexOf(',', res.content.length - 2)) + '1'
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 150) + res.content.substring(res.content.indexOf(','), res.content.length - 1) + '1'
 							});
 							bot.sendMessage({
 								to: channelID,
