@@ -42,46 +42,25 @@ bot.on('any', function(event) {
 		
 		prevDay = day;
 		day = thisDay;
+	    if (prevDay != day && prevDay != undefined){
+		    bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+			    for (var i = 20; i < tacobell.content.length; i = i + 40){
+				    bot.getMessage({
+					    channelID: '509149632618823681',
+					    messageID: tacobell.substring(i, i + 18)
+				    }, function (err, res) {
+					    bot.editMessage({
+						    channelID: '509149632618823681',
+						    messageID: tacobell.substring(i, i + 18),
+						    message: res.content.substring(res.content.indexOf(0, res.content.length - 1)) + '0'
+					});
+				    });
+			    }
+		    });
+	    }
     }
 });
 
-function userMessageID(userID) {
-	return new Promise((resolve, reject) => {
-        bot.getMessage({
-            channelID: '509160162959949825', 
-            messageID: '509164727696359444' 
-        }, function (err,res){
-            if(err) reject(err);
-            let output = (res.content.substring((res.content.indexOf(userID) + 20), (res.content.indexOf(userID) + 38)));
-            resolve(output);
-        })
-    })
-}
-function getLeadAmount(messID){
-	return new Promise((resolve, reject) => {
-        bot.getMessage({
-            channelID: '509149632618823681', 
-            messageID: messID
-        }, function (err,res){
-            if(err) reject(err);
-            let output = parseInt(res.content.substring(0, res.content.indexOf(',')));
-            resolve(output);
-        })
-    })
-}
-function getKarmaAmount(messID){
-	return new Promise((resolve, reject) => {
-        bot.getMessage({
-            channelID: '509149632618823681', 
-            messageID: messID
-        }, function (err,res){
-            if(err) reject(err);
-		let karmaGetting = ress.content.substring(ress.content.indexOf(',') + 2);
-		karmaGetting = parseInt(karmaGetting.substring(0, karmaGetting.indexOf(',')));
-            resolve(karmaGetting);
-        })
-    })
-}
 
 
 bot.on('ready', function (evt) {
@@ -125,56 +104,41 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			bot.getMessage({ channelID: channelID, messageID: '509161596023603211' }, function (err, res){
-			bot.editMessage({
-				channelID: channelID,
-				messageID: res.id,
-				message: res.content + ', 0'
-			});
-			});
-			bot.getMessage({ channelID: channelID, messageID: '509161613925023754' }, function (err, res){
-			bot.editMessage({
-				channelID: channelID,
-				messageID: res.id,
-				message: res.content + ', 0'
-			});
-			});
-			bot.getMessage({ channelID: channelID, messageID: '509161637815517184' }, function (err, res){
-			bot.editMessage({
-				channelID: channelID,
-				messageID: res.id,
-				message: res.content + ', 0'
-			});
-			});
-			bot.getMessage({ channelID: channelID, messageID: '509198004327022603' }, function (err, res){
-			bot.editMessage({
-				channelID: channelID,
-				messageID: res.id,
-				message: res.content + ', 0'
-			});
-			});
-			bot.getMessage({ channelID: channelID, messageID: '509161625413222400' }, function (err, res){
-			bot.editMessage({
-				channelID: channelID,
-				messageID: res.id,
-				message: res.content + ', 0'
-			});
-			});
-			bot.getMessage({ channelID: channelID, messageID: '509456912337731615' }, function (err, res){
-			bot.editMessage({
-				channelID: channelID,
-				messageID: res.id,
-				message: res.content + ', 0'
-			});
-			});
-			bot.getMessage({ channelID: channelID, messageID: '509456917266038785' }, function (err, res){
-			bot.editMessage({
-				channelID: channelID,
-				messageID: res.id,
-				message: res.content + ', 0'
-			});
-			});
             break;
+		case 'DAILY':
+			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+				if (tacobell.content.includes(userID)){
+					let dailyMess = res.content.substring(res.content.indexOf(',') + 2);
+					bot.getMessage({
+						channelID: '509149632618823681',
+						messageID: dailyMess
+					}, function (err, res) {
+						if (parseInt(res.content.substring(res.content.length - 1)) == 0){
+							bot.editMessage({
+								channelID: '509149632618823681',
+								messageID: dailyMess,
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 150) + res.content.substring(res.content.indexOf(',', res.content.length - 1)) + '1'
+							});
+							bot.sendMessage({
+								to: channelID,
+								message: user + ', you have collected your daily 150 <:lead:509862462712053762>lead!
+							});
+						} else {
+							bot.sendMessage({
+								to: channelID,
+								message: 'OOF ' + user + '! You can\'t collect your daily lead for another ' + hoursUntil ' hours, ' + minutesUntil ' minutes, and ' + secondsUntil 'seconds!'
+							});
+						}
+					});
+				} else {
+					bot.sendMessage({
+						to: channelID,
+						message: user + ', please run the "newUser" command to start using this bot'
+					});
+				}
+			});
+			break;
+		break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
