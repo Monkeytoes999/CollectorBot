@@ -270,7 +270,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							channelID: '509149632618823681',
 							messageID: begMessID
 						}, function (err, res){
-							if (0 < parseInt(message.substring(message.indexOf(' ')) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
+							if (0 < parseInt(message.substring(message.indexOf(' '))) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
 								if (hORt == 'heads'){
 									console.log('heads ran');
 									if ((Math.floor(Math.random() * 2)) == 1){
