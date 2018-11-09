@@ -122,7 +122,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							bot.editMessage({
 								channelID: '509149632618823681',
 								messageID: dailyMessID,
-								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 150) + res.content.substring(res.content.indexOf(',', res.content.length - 2)) + '1'
+								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + parseInt('150')) + res.content.substring(res.content.indexOf(',', res.content.length - 2)) + '1'
 							});
 							bot.sendMessage({
 								to: channelID,
