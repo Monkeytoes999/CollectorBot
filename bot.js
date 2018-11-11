@@ -44,8 +44,8 @@ bot.on('any', function(event) {
 	    
 	    for (var i = 0; i < begTimes.length; i = i){
 		    if (begTimes[i] < second){
-			    begTimes.splice(i+1, 1)
-			    hasBegged.splice(i+1, 1)
+			    begTimes.splice(i, 1)
+			    hasBegged.splice(i, 1)
 		    } else {
 			    i++
 		    }
