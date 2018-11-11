@@ -506,25 +506,37 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				} else {
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 					if (tacobell.content.includes(userID)){
+						let userLevel = 0;
 						if (!hasBegged.includes(userID)){
 							hasBegged.push(userID);
 							begTimes.push(second + 5000);
-							bot.sendMessage({
-								to: channelID,
-								message: user + ', your begging has been answered. Your <:lead:509862462712053762>lead count has increased by 1'
-							});
 							let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 							bot.getMessage({
 								channelID: '509149632618823681',
 								messageID: begMessID
 							}, function (err, res){
-								if (userID != '486985623161274378'){
+								let karmaMess = res.content.substring(res.content.indexOf(' ')+1)
+								for (var i = 0; i < levelReq.length; i++){
+									if (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) > levelReq[i]){
+										userLevel = i + 1;
+									} else {
+										break;
+									}
+								}
+								bot.sendMessage({
+									to: channelID,
+									message: user + ', your begging has been answered. Your <:lead:509862462712053762>lead count has increased by 1'
+								}, function (err, res){
+									bot.sendMessage({
+										to: channelID,
+										message: 'Karma is in your favor. You recieve an additional ' + userLevel + ' <:lead:509862462712053762>lead!'
+									});
+								});
 								bot.editMessage({
 									channelID: '509149632618823681',
 									messageID: begMessID,
-									message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+									message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1 + userLevel) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 								});
-								}
 							});
 						} else {
 							let indx = '';
