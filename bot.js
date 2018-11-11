@@ -533,6 +533,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										to: channelID,
 										message: user + ', your begging has been answered. Your <:lead:509862462712053762>lead count has increased by 1'
 									});
+								}
 								bot.editMessage({
 									channelID: '509149632618823681',
 									messageID: begMessID,
