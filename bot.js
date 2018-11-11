@@ -146,12 +146,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					let levelMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 					let userLevel = 0;
 					let leadTillNext = 0;
-					console.log(leadTillNext)
 					bot.getMessage({
 						channelID: '509149632618823681',
 						messageID: levelMessID
 					}, function (err, res){
-						let karmaMess = res.content.substring(res.content.indexOf(' '))
+						let karmaMess = res.content.substring(res.content.indexOf(' ')+1)
 						console.log(karmaMess)
 						leadTillNext = (1000 - parseInt(res.content.substring(0, res.content.indexOf(',')-1)));
 						console.log(leadTillNext)
@@ -167,16 +166,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								break;
 							}
 						}
-					});
-					let sendMess = user + ', you are level ' + (userLevel + 1) + '! You will gain ' + userLevel + ' extra <:lead:509862462712053762>lead (eventually) for each ?beg! \n';
-					if (userLevel != 5){
-						sendMess = sendMess + 'You have ' + leadTillNext + ' karma to go to get to the next level!'
-					} else {
-						sendMess = sendMess + 'You are currently the max level! Congrats!';
-					}
-					bot.sendMessage({
-						to: channelID,
-						message: sendMess
+						let sendMess = user + ', you are level ' + (userLevel + 1) + '! You will gain ' + userLevel + ' extra <:lead:509862462712053762>lead (eventually) for each ?beg! \n';
+						if (userLevel != 5){
+							sendMess = sendMess + 'You have ' + leadTillNext + ' karma to go to get to the next level!'
+						} else {
+							sendMess = sendMess + 'You are currently the max level! Congrats!';
+						}
+						bot.sendMessage({
+							to: channelID,
+							message: sendMess
+						});
 					});
 				} else {
 					bot.sendMessage({
