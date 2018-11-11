@@ -162,6 +162,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							if (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) > levelReq[i]){
 								console.log('running');
 								userLevel = i;
+								console.log(userLevel)
 								if (userLevel != 5){
 									leadTillNext = ((levelReq[userLevel]) - parseInt(karmaMess.substring(0, res.content.indexOf(','))));
 								}
@@ -171,7 +172,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						}
 						let sendMess = user + ', you are level ' + (userLevel + 1) + '! You will gain ' + userLevel + ' extra <:lead:509862462712053762>lead (eventually) for each ?beg! \n';
 						if (userLevel != 5){
-							sendMess = sendMess + 'You have ' + leadTillNext + ' karma to go to get to the next level!'
+							sendMess = sendMess + 'You have ' + leadTillNext + ' karma left to get to the next level!'
 						} else {
 							sendMess = sendMess + 'You are currently the max level! Congrats!';
 						}
