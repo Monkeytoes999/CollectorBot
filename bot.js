@@ -151,16 +151,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						messageID: levelMessID
 					}, function (err, res){
 						let karmaMess = res.content.substring(res.content.indexOf(' ')+1)
-						console.log(karmaMess)
-						leadTillNext = (1000 - parseInt(res.content.substring(0, res.content.indexOf(',')-1)));
-						console.log(leadTillNext)
 						for (var i = 0; i < levelReq.length; i++){
 							console.log(parseInt(karmaMess.substring(0, karmaMess.indexOf(','))));
-							if (parseInt(res.content.substring(0, res.content.indexOf(','))) > levelReq[i]){
+							if (parseInt(karmaMess(0, res.content.indexOf(','))) > levelReq[i]){
 								console.log('running');
 								userLevel = i;
 								if (userLevel != 5){
-									leadTillNext = ((levelReq[userLevel]) - parseInt(res.content.substring(0, res.content.indexOf(','))));
+									leadTillNext = ((levelReq[userLevel]) - parseInt(karmaMess(0, res.content.indexOf(','))));
 								}
 							} else {
 								break;
