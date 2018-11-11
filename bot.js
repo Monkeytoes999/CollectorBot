@@ -122,6 +122,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			bot.sendMessage({
 				to: channelID,
 				message: 'Us: ' + hasBegged + ' T: ' + begTimes
+			});
             break;
 		case 'DAILY':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
