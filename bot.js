@@ -540,6 +540,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								to: channelID,
 								message: user + ', please wait ' + timeLeft + ' more seconds before begging again'
 							});
+						}
 					} else {
 						bot.sendMessage({
 							to: channelID,
