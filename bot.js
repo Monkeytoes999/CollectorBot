@@ -204,7 +204,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							userrcID = 9;
 							subofGive = 29;
 						}
-						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && userID != '486985623161274378' && message.substring(userrcID, userrcID + 18) != userID){
+						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(userrcID, userrcID + 18) != '486985623161274378' && message.substring(userrcID, userrcID + 18) != userID){
 							let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.getMessage({
