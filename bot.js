@@ -150,8 +150,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						channelID: '509149632618823681',
 						messageID: levelMessID
 					}, function (err, res){
-						let karmaMess = res.content.substring(0, res.content.indexOf(','))
-						leadTillNext = (1000 - parseInt(res.content.substring(0, res.content.indexOf(' '))));
+						let karmaMess = res.content.substring(0, res.content.indexOf(' ')+1)
+						console.log(1000 - parseInt(res.content.substring(0, res.content.indexOf(','))))
+						leadTillNext = (1000 - parseInt(res.content.substring(0, res.content.indexOf(','))));
 						for (var i = 0; i < levelReq.length; i++){
 							console.log(parseInt(karmaMess.substring(0, karmaMess.indexOf(','))));
 							console.log(parseInt(res.content.substring(0, res.content.indexOf(','))))
@@ -160,7 +161,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								console.log('running');
 								userLevel = i;
 								if (userLevel != 5){
-									leadTillNext = (levelReq[userLevel] - parseInt(res.content.substring(0, res.content.indexOf(','))));
+									leadTillNext = ((levelReq[userLevel]) - parseInt(res.content.substring(0, res.content.indexOf(','))));
 								}
 							} else {
 								break;
