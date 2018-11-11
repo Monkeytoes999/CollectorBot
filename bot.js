@@ -484,7 +484,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
-			if (message.length > 4 || userID == 486985623161274378){
+			if (message.length > 4 || userID == '486985623161274378'){
 				bot.sendMessage({
 					to: channelID,
 					message: 'Invalid Syntax! (or you\'re bret. Oh yeah, bret, you\'re banned currently)'
@@ -501,11 +501,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							channelID: '509149632618823681',
 							messageID: begMessID
 						}, function (err, res){
+							if (userID != '486985623161274378'){
 							bot.editMessage({
 								channelID: '509149632618823681',
 								messageID: begMessID,
 								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 							});
+							}
 						});	
 					} else {
 						bot.sendMessage({
