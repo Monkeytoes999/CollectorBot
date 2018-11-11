@@ -106,7 +106,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // !ping
 		case 'PING':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-			    for (var i = 20; i < tacobell.content.length; i = i + 40){
+			    for (var i = 20; i < tacobell.content.length; i = i + 41){
 				    console.log(tacobell.content.substring(i, i + 18))
 				    bot.getMessage({
 					    channelID: '509149632618823681',
