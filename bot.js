@@ -8,7 +8,7 @@ var minutesUntil = '';
 var secondsUntil = '';
 var thisTime = new Date();
 var monthNumbers = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
+var levelReq = [1000, 2500, 5000, 10000, 25000]
 
 
 // Configure logger settings
@@ -52,8 +52,8 @@ bot.on('any', function(event) {
 				    }, function (err, res) {
 					    bot.editMessage({
 						    channelID: '509149632618823681',
-						    messageID: tacobell.substring(i, i + 18),
-						    message: res.content.substring(res.content.indexOf(','), res.content.length - 1) + '0'
+						    messageID: tacobell.content.substring(i, i + 18),
+						    message: res.content.substring(0, res.content.length - 1) + '0'
 					});
 				    });
 			    }
@@ -105,10 +105,19 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			bot.editMessage({
-				channelID: channelID,
-				messageID: '509456912337731615',
-				message: '2500, 0, 0, 0, 0, 0, 0, 0, 1'
+			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+			    for (var i = 20; i < tacobell.content.length; i = i + 40){
+				    console.log(tacobell.content.substring(i, i + 18))
+				    bot.getMessage({
+					    channelID: '509149632618823681',
+					    messageID: tacobell.content.substring(i, i + 18)
+				    }, function (err, res) {
+					    bot.sendMessage({
+						    to: channelID,
+						    message: res.content
+					    });
+				    });
+			    }
 			});
             break;
 		case 'DAILY':
@@ -145,6 +154,45 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 		break;
+		case 'LEVEL':
+			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+				if (tacobell.content.includes(userID)){
+					let levelMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+					let userLevel = 0;
+					let leadTillNext = 0;
+					bot.getMessage({
+						channelID: '509149632618823681',
+						messageID: levelMessID
+					}, function (err, res){
+						for (var i = 0; i < levelReq.length; i++){
+							if (parseInt(res.content.substring(0, res.content.indexOf(','))) > levelReq[i]){
+								userLevel = i;
+								if (userLevel != 5){
+									leadTillNext = (levelReq[userLevel] - parseInt(res.content.substring(0, res.content.indexOf(','))));
+								}
+							} else {
+								break;
+							}
+						}
+					});
+					let sendMess = user + ', you are level ' + userLevel + '! You will gain ' + userLevel + ' extra <:lead:509862462712053762>lead for each ?beg! \n';
+					if (userLevel != 5){
+						sendMess = sendMess + 'You have ' + leadTillNext + ' <:lead:509862462712053762>lead to go to get to the next level!'
+					} else {
+						sendMess = sendMess + 'You are currently the max level! Congrats!';
+					}
+					bot.sendMessage({
+						to: channelID,
+						message: sendMess
+					});
+				} else {
+					bot.sendMessage({
+						to: channelID,
+						message: user + ', please run the "newUser" command to start using this bot'
+					});
+				}
+			});
+			break;
 		case 'GIVE':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
