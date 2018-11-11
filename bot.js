@@ -161,10 +161,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							console.log(parseInt(karmaMess.substring(0, karmaMess.indexOf(','))));
 							if (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) > levelReq[i]){
 								console.log('running');
-								userLevel = i;
+								userLevel = i + 1;
 								console.log(userLevel)
-								if (userLevel != 5){
-									leadTillNext = ((levelReq[userLevel]) - parseInt(karmaMess.substring(0, res.content.indexOf(','))));
+								if (i != 5){
+									leadTillNext = ((levelReq[i]) - parseInt(karmaMess.substring(0, res.content.indexOf(','))));
 								}
 							} else {
 								break;
