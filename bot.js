@@ -145,18 +145,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				if (tacobell.content.includes(userID)){
 					let levelMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 					let userLevel = 0;
-					let leadTillNext = '';
+					let leadTillNext = (1000 - parseInt(res.content.substring(0, res.content.indexOf(','))));
+					console.log(leadTillNext)
 					bot.getMessage({
 						channelID: '509149632618823681',
 						messageID: levelMessID
 					}, function (err, res){
 						let karmaMess = res.content.substring(0, res.content.indexOf(' ')+1)
-						console.log(1000 - parseInt(res.content.substring(0, res.content.indexOf(','))))
+						console.log(karmaMess)
 						leadTillNext = (1000 - parseInt(res.content.substring(0, res.content.indexOf(','))));
 						for (var i = 0; i < levelReq.length; i++){
 							console.log(parseInt(karmaMess.substring(0, karmaMess.indexOf(','))));
-							console.log(parseInt(res.content.substring(0, res.content.indexOf(','))))
-							console.log(levelReq[i])
 							if (parseInt(res.content.substring(0, res.content.indexOf(','))) > levelReq[i]){
 								console.log('running');
 								userLevel = i;
