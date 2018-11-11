@@ -523,15 +523,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										break;
 									}
 								}
-								bot.sendMessage({
-									to: channelID,
-									message: user + ', your begging has been answered. Your <:lead:509862462712053762>lead count has increased by 1'
-								}, function (err, res){
+								if (userLevel > 0){
 									bot.sendMessage({
 										to: channelID,
-										message: 'Karma is in your favor. You recieve an additional ' + userLevel + ' <:lead:509862462712053762>lead!'
+										message: user + ', your begging has been answered. Your <:lead:509862462712053762>lead count has increased by 1 \nKarma is in your favor. You recieve an additional ' + userLevel + ' <:lead:509862462712053762>lead!'
 									});
-								});
+								} else {
+									bot.sendMessage({
+										to: channelID,
+										message: user + ', your begging has been answered. Your <:lead:509862462712053762>lead count has increased by 1'
+									});
 								bot.editMessage({
 									channelID: '509149632618823681',
 									messageID: begMessID,
