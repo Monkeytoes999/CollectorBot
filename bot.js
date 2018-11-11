@@ -45,10 +45,10 @@ bot.on('any', function(event) {
 		day = thisDay;
 	    if (prevDay != day && prevDay != undefined){
 		    bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-			    for (var i = 20; i < tacobell.content.length; i = i + 40){
+			    for (var i = 20; i < tacobell.content.length; i = i + 41){
 				    bot.getMessage({
 					    channelID: '509149632618823681',
-					    messageID: tacobell.substring(i, i + 18)
+					    messageID: tacobell.content.substring(i, i + 18)
 				    }, function (err, res) {
 					    bot.editMessage({
 						    channelID: '509149632618823681',
@@ -105,20 +105,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-			    for (var i = 20; i < tacobell.content.length; i = i + 41){
-				    console.log(tacobell.content.substring(i, i + 18))
-				    bot.getMessage({
-					    channelID: '509149632618823681',
-					    messageID: tacobell.content.substring(i, i + 18)
-				    }, function (err, res) {
-					    bot.sendMessage({
-						    to: channelID,
-						    message: res.content
-					    });
-				    });
-			    }
-			});
             break;
 		case 'DAILY':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
@@ -165,6 +151,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						messageID: levelMessID
 					}, function (err, res){
 						for (var i = 0; i < levelReq.length; i++){
+							console.log(parseInt(res.content.substring(0, res.content.indexOf(','))));
 							if (parseInt(res.content.substring(0, res.content.indexOf(','))) > levelReq[i]){
 								userLevel = i;
 								if (userLevel != 5){
