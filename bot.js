@@ -6,9 +6,12 @@ var day;
 var hoursUntil = '';
 var minutesUntil = '';
 var secondsUntil = '';
+var second = '';
 var thisTime = new Date();
 var monthNumbers = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var levelReq = [1000, 2500, 5000, 10000, 25000]
+var hasBegged = [];
+var begTimes = [];
 
 
 // Configure logger settings
@@ -30,6 +33,7 @@ bot.on('any', function(event) {
 	    		let thisDay = thisTime.getDate();
 	    		let thisMinute = thisTime.getMinutes()
 			let thisSecond = thisTime.getSeconds()
+			second = thisTime.getTime()
 			if (thisHour < 0){
 				thisHour = 24 + thisHour;
 				thisDay = thisDay - 1;
@@ -37,6 +41,16 @@ bot.on('any', function(event) {
 	  		if (thisDay < 1){
 				thisDay = monthNumbers[thisTime.getMonth()];
 			}
+	    
+	    for (var i = 0; i < begTimes.length; i = i){
+		    if (begTimes[i] < second){
+			    begTimes.splice(i+1, 1)
+			    hasBegged.splice(i+1, 1)
+		    } else {
+			    i++
+		    }
+	    }
+			    
 	    hoursUntil = (23 - thisHour);
 	    minutesUntil = (59 - thisMinute);
 	    secondsUntil = (59 - thisSecond);
@@ -202,7 +216,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							userrcID = 9;
 							subofGive = 29;
 						}
-						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(userrcID, userrcID + 18) != '486985623161274378' && message.substring(userrcID, userrcID + 18) != userID){
+						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(userrcID, userrcID + 18) != userID){
 							let giverMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.getMessage({
@@ -278,7 +292,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'COINFLIP':
 		case 'CF':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-				if (tacobell.content.includes(userID) && userID != '486985623161274378'){
+				if (tacobell.content.includes(userID)){
 					let hORt = 'heads'
 					let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 					if (message.includes('HEADS')){
@@ -485,31 +499,47 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
-			if (message.length > 4 || userID == userID){
+			if (message.length > 4){
 				bot.sendMessage({
 					to: channelID,
-					message: 'Invalid Syntax! (Probably not, beg has just been currently disabled)'
+					message: 'Invalid Syntax!'
 				});
 				} else {
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 					if (tacobell.content.includes(userID)){
+						if (!hasBegged.includes(userID)){
+							hasBegged.push(userID);
+							begTimes.push(second + 5000);
 							bot.sendMessage({
 								to: channelID,
 								message: user + ', your begging has been answered. Your <:lead:509862462712053762>lead count has increased by 1'
 							});
-						let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
-						bot.getMessage({
-							channelID: '509149632618823681',
-							messageID: begMessID
-						}, function (err, res){
-							if (userID != '486985623161274378'){
-							bot.editMessage({
+							let begMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
+							bot.getMessage({
 								channelID: '509149632618823681',
-								messageID: begMessID,
-								message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+								messageID: begMessID
+							}, function (err, res){
+								if (userID != '486985623161274378'){
+								bot.editMessage({
+									channelID: '509149632618823681',
+									messageID: begMessID,
+									message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + 1) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+								});
+								}
 							});
+						} else {
+							let indx = '';
+							for (var i = 0; i < hasBegged.length; i++){
+								if (hasBegged[i] == userID){
+									indx = i;
+									break;
+								}
 							}
-						});	
+							let timeLeft = (begTimes[indx] - second);
+							bot.sendMessage({
+								to: channelID,
+								message: user + ', please wait ' + timeLeft + ' more seconds before begging again'
+							});
 					} else {
 						bot.sendMessage({
 							to: channelID,
