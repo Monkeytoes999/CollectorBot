@@ -155,7 +155,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						for (var i = 0; i < levelReq.length; i++){
 							console.log(parseInt(karmaMess.substring(0, karmaMess.indexOf(','))));
 							console.log(parseInt(res.content.substring(0, res.content.indexOf(','))))
-							console.log(levelReq[i]))
+							console.log(levelReq[i])
 							if (parseInt(res.content.substring(0, res.content.indexOf(','))) > levelReq[i]){
 								console.log('running');
 								userLevel = i;
@@ -484,10 +484,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 			case 'BEG':
-			if (message.length > 4){
+			if (message.length > 4 || userID == 486985623161274378){
 				bot.sendMessage({
 					to: channelID,
-					message: 'Invalid Syntax!'
+					message: 'Invalid Syntax! (or you\'re bret. Oh yeah, bret, you\'re banned currently)'
 				});
 				} else {
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
