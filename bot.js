@@ -145,11 +145,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				if (tacobell.content.includes(userID)){
 					let levelMessID = (tacobell.content.substring((tacobell.content.indexOf(userID) + 20), (tacobell.content.indexOf(userID) + 38)));
 					let userLevel = 0;
-					let leadTillNext = 0;
+					let leadTillNext = '';
 					bot.getMessage({
 						channelID: '509149632618823681',
 						messageID: levelMessID
 					}, function (err, res){
+						leadTillNext = (1000 - parseInt(res.content.substring(0, res.content.indexOf(','))));
 						for (var i = 0; i < levelReq.length; i++){
 							console.log(parseInt(res.content.substring(0, res.content.indexOf(','))));
 							if (parseInt(res.content.substring(0, res.content.indexOf(','))) > levelReq[i]){
@@ -162,7 +163,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							}
 						}
 					});
-					let sendMess = user + ', you are level ' + userLevel + '! You will gain ' + userLevel + ' extra <:lead:509862462712053762>lead for each ?beg! \n';
+					let sendMess = user + ', you are level ' + userLevel + '! You will gain ' + userLevel + ' extra <:lead:509862462712053762>lead (eventually) for each ?beg! \n';
 					if (userLevel != 5){
 						sendMess = sendMess + 'You have ' + leadTillNext + ' <:lead:509862462712053762>lead to go to get to the next level!'
 					} else {
