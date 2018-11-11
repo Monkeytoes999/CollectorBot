@@ -105,11 +105,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			bot.editMessage({
-				channelID: '509160162959949825', 
-				messageID: '509164727696359444',
-				message: '393586279964475393, 509161596023603211; \n336507246227881984, 509161613925023754; \n458809225120972800, 509161625413222400; \n193104123506196481, 509161637815517184; \n486985623161274378, 509198004327022603; \n485628261494292505, 509456912337731615; \n194966921362407424, 509456917266038785;'
-			});
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 			    for (var i = 20; i < tacobell.content.length; i = i + 40){
 				    console.log(tacobell.content.substring(i, i + 18))
