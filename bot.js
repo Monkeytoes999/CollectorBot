@@ -131,6 +131,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				    	console.log('message 1 was gotted');
 					for (var i = 20; i < tacobell.content.length; i = i + 41){
+					setTimeout(() => {
 					    console.log('for loop: ' + tacobell.content.substring(i, i + 18));
 					    let edtMessID = tacobell.content.substring(i, i + 18)
 					    bot.getMessage({
@@ -140,8 +141,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						    console.log('messageWasGot');
 						    if (res != undefined){
 							    console.log('Not undefined: ' + res.content.substring(0, res.content.length - 1));
-							    console.log('This is what it should be: ' + (res.content.substring(0, res.content.length - 1) + '0'))							    
-							    setTimeout(() => {
+							    console.log('This is what it should be: ' + (res.content.substring(0, res.content.length - 1) + '0'))
 								    bot.editMessage({
 									    channelID: '509149632618823681',
 									    messageID: edtMessID,
@@ -150,9 +150,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									    console.log('This one ran too');
 									    console.log(err)
 								    });
-							    }, 50*i);
 						    }
 					    });
+					}, 50*i);
 				    }
 			    });
 			}
