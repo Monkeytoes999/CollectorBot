@@ -12,6 +12,8 @@ var monthNumbers = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var levelReq = [1000, 2500, 5000, 10000, 25000]
 var hasBegged = [];
 var begTimes = [];
+var nextRst = 'none';
+var doneRST = false;
 
 
 // Configure logger settings
@@ -128,28 +130,32 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
-				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-					for (var i = 20; i < tacobell.content.length; i = i + 41){
-					    let edtMessID = tacobell.content.substring(i, i + 18)
-					    bot.getMessage({
-						    channelID: '509149632618823681',
-						    messageID: edtMessID
-					    }, function (err, res) {
-						    if (res != undefined){
-								setTimeout(() => {
-							    	bot.editMessage({
-									    channelID: '509149632618823681',
-									    messageID: edtMessID,
-									    message: (res.content.substring(0, res.content.length - 1) + '0')
-								    }, function (err, res){
-									    console.log(err)
-								    });
-							    	}, 50*i);
+				while (doneRST = false){
+					let rstClock = new Date();
+					let i = -21
+					if (nextRst == 'none' || rstClock.getTime > nextRst){
+						i = i + 41
+						nextRst = (rstClock.getTime + 2000);
+						bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+							    let edtMessID = tacobell.content.substring(i, i + 18)
+							    bot.getMessage({
+								    channelID: '509149632618823681',
+								    messageID: edtMessID
+							    }, function (err, res) {
+								    if (res != undefined){
+										bot.editMessage({
+											    channelID: '509149632618823681',
+											    messageID: edtMessID,
+											    message: (res.content.substring(0, res.content.length - 1) + '0')
+										    }, function (err, res){
+											    console.log(err)
+										    });
 
-						    }
+								    }
+							    });
 					    });
-				    }
-			    });
+					}
+				}
 			}
 			break;
 		case 'DAILY':
