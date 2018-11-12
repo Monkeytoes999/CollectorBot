@@ -146,6 +146,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								    message: (res.content.substring(0, res.content.length - 1) + '0')
 							    }, function (err, res){
 								    console.log('This one ran too');
+								    console.log(err)
 							    });
 						    }
 					    });
