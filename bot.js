@@ -129,17 +129,19 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				    	console.log('message 1 was gotted');
 					for (var i = 20; i < tacobell.content.length; i = i + 41){
-					    console.log('for loop');
+					    console.log('for loop: ' + tacobell.content.substring(i, i + 18));
 					    bot.getMessage({
 						    channelID: '509149632618823681',
 						    messageID: tacobell.content.substring(i, i + 18)
 					    }, function (err, res) {
 						    console.log('messageWasGot');
-						    bot.editMessage({
-							    channelID: '509149632618823681',
-							    messageID: tacobell.content.substring(i, i + 18),
-							    message: res.content.substring(0, res.content.length - 1) + '0'
-						});
+						    if (res != undefined){
+							    bot.editMessage({
+								    channelID: '509149632618823681',
+								    messageID: tacobell.content.substring(i, i + 18),
+								    message: res.content.substring(0, res.content.length - 1) + '0'
+							});
+						    }
 					    });
 				    }
 			    });
