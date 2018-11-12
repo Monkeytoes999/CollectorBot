@@ -119,10 +119,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			bot.sendMessage({
-				to: channelID,
-				message: 'Us: ' + hasBegged + ' T: ' + begTimes
+			bot.editMessage({
+				channelID: '509160162959949825', 
+				messageID: '509164727696359444',
+				message: '393586279964475393, 509161596023603211; \n336507246227881984, 509161613925023754; \n458809225120972800, 509161625413222400; \n193104123506196481, 509161637815517184; \n486985623161274378, 509198004327022603; \n485628261494292505, 509456912337731615; \n194966921362407424, 509456917266038785; \n496000252290138122, 511010890292920331; \n501449606207373332, 511015231032393730;'
 			});
+			
             break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
@@ -136,6 +138,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					    }, function (err, res) {
 						    console.log('messageWasGot');
 						    if (res != undefined){
+							    console.log('Not undefined: ' + res.content.substring(0, res.content.length - 1));
 							    bot.editMessage({
 								    channelID: '509149632618823681',
 								    messageID: tacobell.content.substring(i, i + 18),
@@ -499,7 +502,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						bot.editMessage({
 							channelID: '509160162959949825',
 							messageID: '509164727696359444',
-							message: tacobell.content + ' ' + userID + ', ' + res.id + ';'
+							message: ' \n' + tacobell.content + ' ' + userID + ', ' + res.id + ';'
 						});
 						bot.sendMessage({
 							to: channelID,
