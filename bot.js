@@ -140,7 +140,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						    console.log('messageWasGot');
 						    if (res != undefined){
 							    console.log('Not undefined: ' + res.content.substring(0, res.content.length - 1));
-							    console.log('This is what it should be: ' + (res.content.substring(0, res.content.length - 1) + '0'))							    bot.editMessage({
+							    console.log('This is what it should be: ' + (res.content.substring(0, res.content.length - 1) + '0'))							    
+							    bot.editMessage({
 								    channelID: '509149632618823681',
 								    messageID: edtMessID,
 								    message: (res.content.substring(0, res.content.length - 1) + '0')
