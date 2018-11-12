@@ -150,7 +150,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									    console.log('This one ran too');
 									    console.log(err)
 								    });
-							    }, 2000);
+							    }, 5000);
 						    }
 					    });
 				    }
