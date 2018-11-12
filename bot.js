@@ -141,14 +141,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						    if (res != undefined){
 							    console.log('Not undefined: ' + res.content.substring(0, res.content.length - 1));
 							    console.log('This is what it should be: ' + (res.content.substring(0, res.content.length - 1) + '0'))							    
-							    bot.editMessage({
-								    channelID: '509149632618823681',
-								    messageID: edtMessID,
-								    message: (res.content.substring(0, res.content.length - 1) + '0')
-							    }, function (err, res){
-								    console.log('This one ran too');
-								    console.log(err)
-							    });
+							    setTimeout(() => {
+								    bot.editMessage({
+									    channelID: '509149632618823681',
+									    messageID: edtMessID,
+									    message: (res.content.substring(0, res.content.length - 1) + '0')
+								    }, function (err, res){
+									    console.log('This one ran too');
+									    console.log(err)
+								    });
+							    }, 2000);
 						    }
 					    });
 				    }
