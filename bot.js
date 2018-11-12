@@ -124,6 +124,27 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message: 'Us: ' + hasBegged + ' T: ' + begTimes
 			});
             break;
+		case 'MANUALDAILYRESET':
+			if (userID == '393586279964475393'){
+				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+				    	console.log('message 1 was gotted');
+					for (var i = 20; i < tacobell.content.length; i = i + 41){
+					    console.log('for loop');
+					    bot.getMessage({
+						    channelID: '509149632618823681',
+						    messageID: tacobell.content.substring(i, i + 18)
+					    }, function (err, res) {
+						    console.log('messageWasGot');
+						    bot.editMessage({
+							    channelID: '509149632618823681',
+							    messageID: tacobell.content.substring(i, i + 18),
+							    message: res.content.substring(0, res.content.length - 1) + '0'
+						});
+					    });
+				    }
+			    });
+			}
+			break;
 		case 'DAILY':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
