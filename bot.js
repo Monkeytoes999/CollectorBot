@@ -72,7 +72,11 @@ bot.on('any', function(event) {
 									    messageID: edtMessID,
 									    message: (res.content.substring(0, res.content.length - 1) + '0')
 								    }, function (err, res){
-									    console.log(err)
+									if(err != null){
+										if(err.statusCode == 429){
+											i = i - 41
+										}
+									}
 								    });
 							    	}, 50*i);
 						    }
@@ -150,7 +154,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									    message: (res.content.substring(0, res.content.length - 1) + '0')
 								    }, function (err, res){
 									    console.log(err)
-									console.log(err.statusCode == 429)
+									if(err != null){
+										if(err.statusCode == 429){
+											i = i - 41
+										}
+									}
 								    });
 							    	}, 50*i);
 
