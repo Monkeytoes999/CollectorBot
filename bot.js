@@ -168,6 +168,60 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			    });
 			}
 			break;
+		case 'GIFT':
+			if(userID == '393586279964475393'){
+				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+					for(var i = 28; i < message.length; i++){
+						if ((message.charCodeAt(i, i+1) < 48 || message.charCodeAt(i, i+1) > 57) && message.substring(i, i+1) != ' '){
+							validSyn = false;
+						}
+					}
+					if (message.length > 28 && validSyn){
+						let userrcID = 8;
+						let subofGive = 28;
+						if (message.includes('<@!')){
+							userrcID = 9;
+							subofGive = 29;
+						}
+						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18))){
+							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
+							bot.sendMessage({
+								to: channelID,
+								message: message.substring(userrcID - 3, subofGive - 1) + ', ' + user + ' has sent you ' + message.substring(subofGive) + '<:lead:509862462712053762>lead'
+							});
+							bot.getMessage({
+								channelID: '509149632618823681',
+								messageID: recieverMessID
+							}, function (errr, ress){
+								let karmaRecMess = ress.content.substring(ress.content.indexOf(',') + 2);
+								let endKarma = (parseInt(karmaRecMess.substring(0, karmaRecMess.indexOf(','))) - parseInt(message.substring(subofGive)))
+								if (endKarma < 1) endKarma = 0;
+								bot.editMessage({
+									channelID: '509149632618823681',
+									messageID: recieverMessID,
+									message: (parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(subofGive))) + ', ' + endKarma + (karmaRecMess.substring(karmaRecMess.indexOf(',')))
+								});
+							});
+						} else {
+							bot.sendMessage({
+								to: channelID,
+								message: user + ', the user you tried to give to has no data with this bot.'
+							});
+						}
+					} else if(validSyn) {
+						bot.sendMessage({
+							to: channelID,
+							message: 'Invalid Args!'
+						});
+					} else {
+						bot.sendMessage({
+							to: channelID,
+							message: 'Invalid Syntax!'
+						});
+					}
+				});
+			}
+			break;
 		case 'DAILY':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
