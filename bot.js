@@ -193,13 +193,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								channelID: '509149632618823681',
 								messageID: recieverMessID
 							}, function (errr, ress){
-								let karmaRecMess = ress.content.substring(ress.content.indexOf(',') + 2);
-								let endKarma = (parseInt(karmaRecMess.substring(0, karmaRecMess.indexOf(','))) - parseInt(message.substring(subofGive)))
-								if (endKarma < 1) endKarma = 0;
 								bot.editMessage({
 									channelID: '509149632618823681',
 									messageID: recieverMessID,
-									message: (parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(subofGive))) + ', ' + endKarma + (karmaRecMess.substring(karmaRecMess.indexOf(',')))
+									message: (parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(subofGive))) + ress.content.substring(ress.content.indexOf(',')))
 								});
 							});
 						} else {
