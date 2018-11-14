@@ -595,7 +595,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message: 'plsno'
 			});
 			break;
-			case 'BEG':
+		case 'BEG':
 			if (message.length > 4){
 				bot.sendMessage({
 					to: channelID,
@@ -615,7 +615,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							}, function (err, res){
 								let karmaMess = res.content.substring(res.content.indexOf(' ')+1)
 								for (var i = 0; i <= levelReq.length; i++){
-									if (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) > levelReq[i]){
+									if (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) >= levelReq[i]){
 										userLevel = i + 1;
 									} else {
 										break;
