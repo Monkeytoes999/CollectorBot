@@ -215,7 +215,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						let karmaMess = res.content.substring(res.content.indexOf(' ')+1)
 						leadTillNext = 1000 - (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))));
 						for (var i = 0; i <= levelReq.length; i++){
-							if (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) > levelReq[i]){
+							if (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) >= levelReq[i]){
 								userLevel = i + 1;
 								if (i != 5){
 									leadTillNext = ((levelReq[i+1]) - parseInt(karmaMess.substring(0, karmaMess.indexOf(','))));
