@@ -188,7 +188,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.sendMessage({
 								to: channelID,
-								message: message.substring(userrcID - 3, subofGive - 1) + ', ' + user + ' has sent you ' + message.substring(subofGive) + '<:lead:509862462712053762>lead'
+								message: 'You\'ve been gifted' + message.substring(subofGive) + '<:lead:509862462712053762>lead!'
 							});
 							bot.getMessage({
 								channelID: '509149632618823681',
