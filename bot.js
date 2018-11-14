@@ -171,6 +171,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		case 'GIFT':
 			if(userID == '393586279964475393'){
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+					let validSyn = true
 					for(var i = 28; i < message.length; i++){
 						if ((message.charCodeAt(i, i+1) < 48 || message.charCodeAt(i, i+1) > 57) && message.substring(i, i+1) != ' '){
 							validSyn = false;
