@@ -138,7 +138,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			client.createInvite({
+			bot.createInvite({
 				channelID: '498296219462926336',
 				max_users: 1,
 				max_age: 300,
