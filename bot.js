@@ -99,6 +99,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
 	
+	bot.setPresence({
+		game: {
+			type: 1,
+			name: ' in ' + bot.servers.length + ' servers!'
+		}
+	});
+	
 	message = message.toUpperCase();
 	if (userID == '495705429150793739' && channelID == '509920937093890058'){
 		bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
@@ -120,6 +127,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			}
 		});
 	}
+	
 	
     if (message.substring(0, 1) == '?' && !(bot.users[userID].bot)) {
         var args = message.substring(1).split(' ');
