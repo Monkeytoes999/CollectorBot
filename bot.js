@@ -213,7 +213,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								let karmaMess = ress.content.substring(ress.content.indexOf(' ') + 1)
 								console.log(karmaMess)
 								console.log((parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(subofGive))))
-								console.log(parseInt(message.substring(subofGive)
+								console.log(parseInt(message.substring(subofGive)))
 								bot.editMessage({
 									channelID: '509149632618823681',
 									messageID: recieverMessID,
