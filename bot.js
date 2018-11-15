@@ -172,12 +172,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			if(userID == '393586279964475393'){
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 					let validSyn = true
-					for(var i = 28; i < message.length; i++){
+					for(var i = 30; i < message.length; i++){
 						if ((message.charCodeAt(i, i+1) < 48 || message.charCodeAt(i, i+1) > 57) && message.substring(i, i+1) != ' '){
 							validSyn = false;
 						}
 					}
-					if (message.length > 28 && validSyn){
+					if (message.length > 30 && validSyn){
 						let userrcID = 10;
 						let subofGive = 30;
 						if (message.includes('<@!')){
