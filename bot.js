@@ -217,7 +217,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 								bot.editMessage({
 									channelID: '509149632618823681',
 									messageID: recieverMessID,
-									message: parseInt(ress.content.substring(0, ress.content.indexOf(','))) + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(subofGive))) + karmaMess.substring(karmaMess.indexOf(','))
+									message: ress.content.substring(0, ress.content.indexOf(',')) + ', ' + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(subofGive))) + karmaMess.substring(karmaMess.indexOf(','))
 								});
 							});
 						} else {
