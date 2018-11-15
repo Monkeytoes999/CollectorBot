@@ -178,17 +178,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						}
 					}
 					if (message.length > 28 && validSyn){
-						let userrcID = 8;
-						let subofGive = 28;
+						let userrcID = 10;
+						let subofGive = 30;
 						if (message.includes('<@!')){
-							userrcID = 9;
-							subofGive = 29;
+							userrcID = 11;
+							subofGive = 31;
 						}
-						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18))){
+						if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(6,7) == 'L'){
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.sendMessage({
 								to: channelID,
-								message: 'You\'ve been gifted' + message.substring(subofGive) + '<:lead:509862462712053762>lead!'
+								message: 'You\'ve been gifted' + message.substring(subofGive) + ' <:lead:509862462712053762>lead!'
 							});
 							bot.getMessage({
 								channelID: '509149632618823681',
@@ -198,6 +198,23 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									channelID: '509149632618823681',
 									messageID: recieverMessID,
 									message: (parseInt(ress.content.substring(0, ress.content.indexOf(','))) + parseInt(message.substring(subofGive))) + ress.content.substring(ress.content.indexOf(','))
+								});
+							});
+						} else if (tacobell.content.includes(message.substring(userrcID, userrcID + 18)) && message.substring(6,7) == 'K'){
+							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
+							bot.sendMessage({
+								to: channelID,
+								message: 'You\'ve been gifted' + message.substring(subofGive) + ' karma!'
+							});
+							bot.getMessage({
+								channelID: '509149632618823681',
+								messageID: recieverMessID
+							}, function (errr, ress){
+								let karmaMess = ress.content.substring(ress.content.indexOf(',') + 2)
+								bot.editMessage({
+									channelID: '509149632618823681',
+									messageID: recieverMessID,
+									message: parseInt(ress.content.substring(0, ress.content.indexOf(','))) + (parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(subofGive))) + karmaMess.substring(karmaMess.indexOf(','))
 								});
 							});
 						} else {
