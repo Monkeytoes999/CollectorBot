@@ -145,6 +145,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				temporary: false
 			}, function(err, res){
 				console.log(res)
+				console.log(err)
 			});
 			
             break;
