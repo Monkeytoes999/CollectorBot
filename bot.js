@@ -188,7 +188,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.sendMessage({
 								to: channelID,
-								message: 'You\'ve been gifted' + message.substring(subofGive) + ' <:lead:509862462712053762>lead!'
+								message: 'You\'ve been gifted ' + message.substring(subofGive) + ' <:lead:509862462712053762>lead!'
 							});
 							bot.getMessage({
 								channelID: '509149632618823681',
@@ -204,13 +204,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							let recieverMessID = (tacobell.content.substring((tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 20), (tacobell.content.indexOf(message.substring(userrcID, userrcID + 18)) + 38)));
 							bot.sendMessage({
 								to: channelID,
-								message: 'You\'ve been gifted' + message.substring(subofGive) + ' karma!'
+								message: 'You\'ve been gifted ' + message.substring(subofGive) + ' karma!'
 							});
 							bot.getMessage({
 								channelID: '509149632618823681',
 								messageID: recieverMessID
 							}, function (errr, ress){
-								let karmaMess = ress.content.substring(ress.content.indexOf(',') + 2)
+								let karmaMess = ress.content.substring(ress.content.indexOf(' ') + 1)
+								console.log(karmaMess)
+								console.log((parseInt(karmaMess.substring(0, karmaMess.indexOf(','))) + parseInt(message.substring(subofGive))))
+								console.log(parseInt(message.substring(subofGive)
 								bot.editMessage({
 									channelID: '509149632618823681',
 									messageID: recieverMessID,
