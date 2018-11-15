@@ -138,7 +138,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			console.log(bot)
+			client.createInvite({
+				channelID: '498296219462926336',
+				max_users: 1,
+				max_age: 300,
+				temporary: false
+			}, function(err, res){
+				console.log(res)
+			}
+			
             break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
