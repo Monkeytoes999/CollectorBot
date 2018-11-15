@@ -13,7 +13,7 @@ var levelReq = [1000, 2500, 5000, 10000, 25000]
 var hasBegged = [];
 var begTimes = [];
 
-
+//
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
