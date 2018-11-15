@@ -138,12 +138,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'PING':
-			bot.editMessage({
-				channelID: '509149632618823681', 
-				messageID: '509161596023603211',
-				message: '13770, 500, 0, 0, 0, 0, 0, 0, 1'
-			});
-			
+			console.log(bot)
             break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
