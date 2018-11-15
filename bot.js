@@ -13,7 +13,7 @@ var levelReq = [1000, 2500, 5000, 10000, 25000]
 var hasBegged = [];
 var begTimes = [];
 
-//
+
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -99,12 +99,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
 	
-	console.log(bot.servers)
-	console.log(bot)
 	bot.setPresence({
 		game: {
-			type: 1,
-			name: ' in ' + bot.servers.length + ' servers!'
+			type: 0,
+			name: ' in ' + Object.keys(bot.servers).length + ' servers!'
 		}
 	});
 	
