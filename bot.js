@@ -13,7 +13,6 @@ var levelReq = [1000, 2500, 5000, 10000, 25000]
 var hasBegged = [];
 var begTimes = [];
 
-
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -132,6 +131,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '?' && !(bot.users[userID].bot)) {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
+	let cfIDX = 4;
 	
        
         args = args.splice(1);
@@ -414,6 +414,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
 			break;
 		case 'COINFLIP':
+			cfIDX = 9;
 		case 'CF':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 				if (tacobell.content.includes(userID)){
@@ -455,23 +456,23 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							channelID: '509149632618823681',
 							messageID: begMessID
 						}, function (err, res){
-							if (0 < parseInt(message.substring(message.indexOf(' '))) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(4))){
+							if (0 < parseInt(message.substring(message.indexOf(' '))) && parseInt(res.content.substring(0, res.content.indexOf(','))) >= parseInt(message.substring(cfIDX))){
 								if (hORt == 'heads'){
 									if ((Math.floor(Math.random() * 2)) == 1){
 										bot.editMessage({
 											channelID: '509149632618823681',
 											messageID: begMessID,
-											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(cfIDX)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 										}, function (errr, ress){
 											bot.sendMessage({
 												to: channelID,
-												message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
+												message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
 											}, function (errrr, resss){
 												setTimeout(() => {
 													bot.editMessage({
 														channelID: channelID,
 														messageID: resss.id,
-														message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads! You won '  + (parseInt(message.substring(4))*2) + ' lead!'
+														message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads! You won '  + (parseInt(message.substring(cfIDX))*2) + ' lead!'
 													});
 												}, 2000);
 											});
@@ -480,17 +481,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										bot.editMessage({
 											channelID: '509149632618823681',
 											messageID: begMessID,
-											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - (parseInt(message.substring(cfIDX)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 										}, function (errr, ress){
 											bot.sendMessage({
 												to: channelID,
-												message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
+												message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <a:cf:509424634865909787>'
 											}, function (errrr, resss){
 												setTimeout(() => {
 													bot.editMessage({
 														channelID: channelID,
 														messageID: resss.id,
-														message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails... you lost your '  + (parseInt(message.substring(4))) + ' lead.'
+														message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose heads. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails... you lost your '  + (parseInt(message.substring(cfIDX))) + ' lead.'
 													});
 												}, 2000);
 											});
@@ -501,17 +502,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										bot.editMessage({
 											channelID: '509149632618823681',
 											messageID: begMessID,
-											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) + (parseInt(message.substring(cfIDX)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 										}, function (errr, ress){
 											bot.sendMessage({
 												to: channelID,
-												message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <a:cf:509424634865909787>'
+												message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <a:cf:509424634865909787>'
 											}, function (errrr, resss){
 												setTimeout(() => {
 													bot.editMessage({
 														channelID: channelID,
 														messageID: resss.id,
-														message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails! You won '  + (parseInt(message.substring(4))*2) + ' lead!'
+														message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <:tails:509424611721609227> ... and lands on tails! You won '  + (parseInt(message.substring(cfIDX))*2) + ' lead!'
 													});
 												}, 2000);
 											});
@@ -520,24 +521,24 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 										bot.editMessage({
 											channelID: '509149632618823681',
 											messageID: begMessID,
-											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - (parseInt(message.substring(4)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
+											message: (parseInt(res.content.substring(0, res.content.indexOf(','))) - (parseInt(message.substring(cfIDX)))) + ',' + (res.content.substring(res.content.indexOf(',') +1))
 										}, function (errr, ress){
 											bot.sendMessage({
 												to: channelID,
-												message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <a:cf:509424634865909787>'
+												message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <a:cf:509424634865909787>'
 											}, function (errrr, resss){
 												setTimeout(() => {
 													bot.editMessage({
 														channelID: channelID,
 														messageID: resss.id,
-														message: user + ', you spent ' + message.substring(4) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads... you lost your '  + (parseInt(message.substring(4))) + ' lead.'
+														message: user + ', you spent ' + message.substring(cfIDX) + ' <:lead:509862462712053762>lead and chose tails. \nThe coin flips... <:heads:509424625558749185> ... and lands on heads... you lost your '  + (parseInt(message.substring(cfIDX))) + ' lead.'
 													});
 												}, 2000);
 											});
 										});
 									}
 								}
-							} else if(parseInt(res.content.substring(0, res.content.indexOf(','))) < parseInt(message.substring(4))) {
+							} else if(parseInt(res.content.substring(0, res.content.indexOf(','))) < parseInt(message.substring(cfIDX))) {
 								bot.sendMessage({
 									to: channelID,
 									message: 'You can\'t bet more lead than you own ' + user + '!'
