@@ -139,7 +139,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		setTimeout(() => {
 			bot.sendMessage({
 				to: channelID,
-				message: 'Some people starting singing it not knowing what it was'
+				message: 'Some people started singing it not knowing what it was'
 			});
 		}, 1000);
 	}
