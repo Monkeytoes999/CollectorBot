@@ -127,6 +127,39 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		});
 	}
 	
+	if (message == 'THIS IS THE SONG THAT NEVER ENDS'){
+		setTimeout(() => {
+			bot.sendMessage({
+				to: channelID,
+				message: 'It just goes on and on my friends'
+			});
+		}, 1000);
+	}
+	if (message == 'IT JUST GOES ON AND ON MY FRIENDS'){
+		setTimeout(() => {
+			bot.sendMessage({
+				to: channelID,
+				message: 'Some people starting singing it not knowing what it was'
+			});
+		}, 1000);
+	}
+	if (message == 'SOME PEOPLE STARTED SINGING IT NOT KNOWING WHAT IT WAS'){
+		setTimeout(() => {
+			bot.sendMessage({
+				to: channelID,
+				message: 'And they\'ll continue singing it forever just because'
+			});
+		}, 1000);
+	}
+	if (message == 'AND THEY\'LL CONTINUE SINGING IT FOREVER JUST BECAUSE'){
+		setTimeout(() => {
+			bot.sendMessage({
+				to: channelID,
+				message: 'This is the song that never ends'
+			});
+		}, 1000);
+	}
+	
 	
     if (message.substring(0, 1) == '?' && !(bot.users[userID].bot)) {
         var args = message.substring(1).split(' ');
@@ -147,35 +180,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				console.log(res)
 				console.log(err)
 			});
-			break;
-		case 'STNE':
-			let KOK = true;
-			while (true){
-				if (KOK){
-					KOK = false
-						bot.sendMessage({
-							to: channelID,
-							message: 'This is the song that never ends'
-						}, function(err, res){
-								bot.sendMessage({
-									to: channelID,
-									message: 'It just goes on and on my friends'
-								}, function(err, res){
-										bot.sendMessage({
-											to: channelID,
-											message: 'Some people started singing it not knowing what it was'
-										}, function(err, res){
-												bot.sendMessage({
-													to: channelID,
-													message: 'And they\'ll continue singing it forever just because'
-												}, function(err, res){
-													KOK = true
-												});
-										});
-								});
-						});
-				}
-			}
 			break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
