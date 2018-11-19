@@ -153,35 +153,27 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			while (true){
 				if (KOK){
 					KOK = false
-					setTimeout(() => {
 						bot.sendMessage({
 							to: channelID,
 							message: 'This is the song that never ends'
 						}, function(err, res){
-							setTimeout(() => {
 								bot.sendMessage({
 									to: channelID,
 									message: 'It just goes on and on my friends'
 								}, function(err, res){
-									setTimeout(() => {
 										bot.sendMessage({
 											to: channelID,
 											message: 'Some people started singing it not knowing what it was'
 										}, function(err, res){
-											setTimeout(() => {
 												bot.sendMessage({
 													to: channelID,
 													message: 'And they\'ll continue singing it forever just because'
 												}, function(err, res){
 													KOK = true
 												});
-											}, 1000);
 										});
-									}, 1000);
 								});
-							}, 1000);
 						});
-					}, 1000);
 				}
 			}
 			break;
