@@ -147,8 +147,44 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				console.log(res)
 				console.log(err)
 			});
-			
-            break;
+			break;
+		case 'STNE':
+			let KOK = true;
+			while (true){
+				if (KOK){
+					KOK = false
+					setTimeout(() => {
+						bot.sendMessage({
+							to: channelID,
+							message: 'This is the song that never ends'
+						}, function(err, res){
+							setTimeout(() => {
+								bot.sendMessage({
+									to: channelID,
+									message: 'It just goes on and on my friends'
+								}, function(err, res){
+									setTimeout(() => {
+										bot.sendMessage({
+											to: channelID,
+											message: 'Some people started singing it not knowing what it was'
+										}, function(err, res){
+											setTimeout(() => {
+												bot.sendMessage({
+													to: channelID,
+													message: 'And they\'ll continue singing it forever just because'
+												}, function(err, res){
+													KOK = true
+												});
+											}, 1000);
+										});
+									}, 1000);
+								});
+							}, 1000);
+						});
+					}, 1000);
+				}
+			}
+			break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
 				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
