@@ -102,9 +102,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			    message: (res.content.substring(0, res.content.length - 1) + '0') 
 		    }, function(errr, resss){
 			    console.log(resss.content);
+			    getMIDs.splice(0, 1);
 		    });
 		});
-		getMIDs.splice(0, 1);
 	}
 	
 	message = message.toUpperCase();
