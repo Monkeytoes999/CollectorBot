@@ -127,38 +127,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		});
 	}
 	
-	if (bottleChannel.includes(channelID)){
-		setTimeout(() => {
-			bot.sendMessage({
-				to: channelID,
-				message: manyBottles[bottleChannel.indexOf(channelID)] + ' bottles of ' + bottlesOf[bottleChannel.indexOf(channelID)] + ' on the wall'
-			}, function(a, b){
-				bot.sendMessage({
-					to: channelID,
-					message: manyBottles[bottleChannel.indexOf(channelID)] + ' bottles of ' + bottlesOf[bottleChannel.indexOf(channelID)]
-				}, function(c, d){
-					bot.sendMessage({
-						to: channelID,
-						message: 'Take one down, pass it around'
-					}, function(e, f){
-						manyBottles[bottleChannel.indexOf(channelID)] = manyBottles[bottleChannel.indexOf(channelID)] - 1
-						bot.sendMessage({
-							to: channelID,
-							message: manyBottles[bottleChannel.indexOf(channelID)] + ' bottles of ' + bottlesOf[bottleChannel.indexOf(channelID)] + ' on the wall'
-						});
-					});
-				});
-			});
-		}, 5000);
-		let indx = bottleChannel.indexOf(channelID);
-		if (manyBottles[indx] = 0){
-			bottlesOf.splice(indx, 1);
-			bottleChannel.splice(indx, 1);
-			manyBottles.splice(indx, 1);
-		}
-	}
-	
-	
 	if (message == 'THIS IS THE SONG THAT NEVER ENDS'){
 		setTimeout(() => {
 			bot.sendMessage({
@@ -216,14 +184,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				console.log(res)
 				console.log(err)
 			});
-			break;
-		case 'bottles':
-			let botlesOf = message.substring(0, message.indexOf(' '));
-			let numbotles = parseInt(botlesOf.substring(botlesOf.indexOf(' ') + 1));
-			botlesOf = botlesOf.substring(0, botlesOf.indexOf(' '));
-			bottlesOf.push(botlesOf)
-			manyBottles.push(numbotles)
-			bottleChannel.push(channelID)
 			break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
