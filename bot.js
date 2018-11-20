@@ -92,6 +92,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			channelID: '509149632618823681',
 			messageID: getMIDs[0]
 		}, function(err, res){
+			if (err) console.log(err)
 		    bot.editMessage({
 			    channelID: '509149632618823681',
 			    messageID: getMIDs[0],
