@@ -179,10 +179,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
-				for (var i = 20; i < tacobell.content.length; i = i + 41){
-					let edtMessID = tacobell.content.substring(i, i + 18)
-					getMIDs.push(edtMessID);
-				}
+				 bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
+					for (var i = 20; i < tacobell.content.length; i = i + 41){
+					    let edtMessID = tacobell.content.substring(i, i + 18)
+					    getMIDs.push(edtMessID);
+					}
+		   		});	
 			}
 			break;
 		case 'GIFT':
