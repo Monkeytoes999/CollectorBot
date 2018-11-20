@@ -88,6 +88,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	});
 	
 	if (getMIDs.length > 0){
+		console.log(getMIDs)
 		bot.getMessage({
 			channelID: '509149632618823681',
 			messageID: getMIDs[0]
