@@ -12,6 +12,7 @@ var monthNumbers = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var levelReq = [1000, 2500, 5000, 10000, 25000]
 var hasBegged = [];
 var begTimes = [];
+var getMIDs = [];
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -60,28 +61,9 @@ bot.on('any', function(event) {
 		    bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
 					for (var i = 20; i < tacobell.content.length; i = i + 41){
 					    let edtMessID = tacobell.content.substring(i, i + 18)
-					    bot.getMessage({
-						    channelID: '509149632618823681',
-						    messageID: edtMessID
-					    }, function (err, res) {
-						    if (res != undefined){
-								setTimeout(() => {
-							    	bot.editMessage({
-									    channelID: '509149632618823681',
-									    messageID: edtMessID,
-									    message: (res.content.substring(0, res.content.length - 1) + '0')
-								    }, function (err, res){
-									if(err != null){
-										if(err.statusCode == 429){
-											i = i - 41
-										}
-									}
-								    });
-							    	}, 50*i);
-						    }
-					    });
-				    }
-			    });
+					    getMIDs.push(edtMessID);
+					}
+		    });
 	    }
     }
 });
@@ -104,6 +86,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			name: ' in ' + Object.keys(bot.servers).length + ' servers!'
 		}
 	});
+	
+	if (getMIDs.length > 0){
+		bot.getMessage({
+			channelID: '509149632618823681',
+			messageID: getMIDs[0]
+		}, function(err, res){
+		    bot.editMessage({
+			    channelID: '509149632618823681',
+			    messageID: getMIDs[0],
+			    message: (res.content.substring(0, res.content.length - 1) + '0') 
+		    });
+		});
+		getMIDs.splice(0, 1);
+	}
 	
 	message = message.toUpperCase();
 	if (userID == '495705429150793739' && channelID == '509920937093890058'){
@@ -183,33 +179,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
-				bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-					for (var i = 20; i < tacobell.content.length; i = i + 41){
-					    let edtMessID = tacobell.content.substring(i, i + 18)
-					    bot.getMessage({
-						    channelID: '509149632618823681',
-						    messageID: edtMessID
-					    }, function (err, res) {
-						    if (res != undefined){
-								setTimeout(() => {
-							    	bot.editMessage({
-									    channelID: '509149632618823681',
-									    messageID: edtMessID,
-									    message: (res.content.substring(0, res.content.length - 1) + '0')
-								    }, function (err, res){
-									    console.log(err)
-									if(err != null){
-										if(err.statusCode == 429){
-											i = i - 41
-										}
-									}
-								    });
-							    	}, 50*i);
-
-						    }
-					    });
-				    }
-			    });
+				for (var i = 20; i < tacobell.content.length; i = i + 41){
+					let edtMessID = tacobell.content.substring(i, i + 18)
+					getMIDs.push(edtMessID);
+				}
 			}
 			break;
 		case 'GIFT':
