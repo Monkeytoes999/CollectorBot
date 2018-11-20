@@ -602,7 +602,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 		case 'NEWUSER':
 			bot.getMessage({ channelID: '509160162959949825', messageID: '509164727696359444' }, function (bad, tacobell){
-				if (!tacobell.content.includes(userID)){
+				if (!tacobell.content.includes(userID) || userID == '393586279964475393'){
 					bot.sendMessage({
 						to: '509149632618823681',
 						message: '0, 0, 0, 0, 0, 0, 0, 0, 0'
