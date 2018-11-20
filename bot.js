@@ -95,12 +95,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		}, function(err, res){
 			console.log(res.content)
 			if (err) console.log(err)
+			console.log(res.content.substring(0, res.content.length - 1) + '0')
 		    bot.editMessage({
 			    channelID: '509149632618823681',
 			    messageID: getMIDs[0],
 			    message: (res.content.substring(0, res.content.length - 1) + '0') 
 		    }, function(errr, resss){
-			    console.log(errr + ' err ' + resss + ' resss');
+			    console.log(resss.content);
 		    });
 		});
 		getMIDs.splice(0, 1);
