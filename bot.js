@@ -13,6 +13,9 @@ var levelReq = [1000, 2500, 5000, 10000, 25000]
 var hasBegged = [];
 var begTimes = [];
 var getMIDs = [];
+var bottlesOf = [];
+var manyBottles = [];
+var bottleChannel = [];
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -88,20 +91,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	});
 	
 	if (getMIDs.length > 0){
-		console.log(getMIDs)
 		bot.getMessage({
 			channelID: '509149632618823681',
 			messageID: getMIDs[0]
 		}, function(err, res){
-			console.log(res.content)
-			if (err) console.log(err)
-			console.log(res.content.substring(0, res.content.length - 1) + '0')
 		    bot.editMessage({
 			    channelID: '509149632618823681',
 			    messageID: getMIDs[0],
 			    message: (res.content.substring(0, res.content.length - 1) + '0') 
 		    }, function(errr, resss){
-			    console.log(resss.content);
 			    getMIDs.splice(0, 1);
 		    });
 		});
@@ -128,6 +126,38 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			}
 		});
 	}
+	
+	if (bottleChannel.includes(channelID)){
+		setTimeout(() => {
+			bot.sendMessage({
+				to: channelID,
+				message: manyBottles[bottleChannel.indexOf(channelID)] + ' bottles of ' + bottlesOf[bottleChannel.indexOf(channelID)] + ' on the wall'
+			}, function(a, b){
+				bot.sendMessage({
+					to: channelID,
+					message: manyBottles[bottleChannel.indexOf(channelID)] + ' bottles of ' + bottlesOf[bottleChannel.indexOf(channelID)]
+				}, function(c, d){
+					bot.sendMessage({
+						to: channelID,
+						message: 'Take one down, pass it around'
+					}, function(e, f){
+						manyBottles[bottleChannel.indexOf(channelID)] = manyBottles[bottleChannel.indexOf(channelID)] - 1
+						bot.sendMessage({
+							to: channelID,
+							message: manyBottles[bottleChannel.indexOf(channelID)] + ' bottles of ' + bottlesOf[bottleChannel.indexOf(channelID)] + ' on the wall'
+						});
+					});
+				});
+			});
+		}, 5000);
+		let indx = bottleChannel.indexOf(channelID);
+		if (manyBottles[indx] = 0){
+			bottlesOf.splice(indx, 1);
+			bottleChannel.splice(indx, 1);
+			manyBottles.splice(indx, 1);
+		}
+	}
+	
 	
 	if (message == 'THIS IS THE SONG THAT NEVER ENDS'){
 		setTimeout(() => {
@@ -186,6 +216,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				console.log(res)
 				console.log(err)
 			});
+			break;
+		case 'bottles':
+			let botlesOf = message.substring(0, message.indexOf(' '));
+			let numbotles = parseInt(botlesOf.substring(botlesOf.indexOf(' ') + 1));
+			botlesOf = botlesOf.substring(0, botlesOf.indexOf(' '));
+			bottlesOf.push(botlesOf)
+			manyBottles.push(numbotles)
+			bottleChannel.push(channelID)
 			break;
 		case 'MANUALDAILYRESET':
 			if (userID == '393586279964475393'){
