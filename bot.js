@@ -176,7 +176,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'TEST':
-			const getUserById = (request, response) => {
+			var getUserById = (request, response) => {
 			  const id = parseInt(request.params.id)
 
 			  pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
