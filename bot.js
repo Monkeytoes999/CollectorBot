@@ -176,7 +176,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'TEST':
-			var getUserById = (request, response) => {
+			(request, response) => {
 			  const id = parseInt(request.params.id)
 
 			  pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
@@ -184,12 +184,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			      throw error
 			    }
 			    response.status(200).json(results.rows)
+				  bot.sendMessag({
+					  to: channelID,
+					  message: results
+				  });
+				  console.log(results);
 			  })
 			}
-			bot.sendMessage({
-				to: channelID,
-				message: getUserById
-			});
 			break;
 		case 'PING':
 			bot.sendMessage({
