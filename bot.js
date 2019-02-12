@@ -16,6 +16,11 @@ var getMIDs = [];
 var bottlesOf = [];
 var manyBottles = [];
 var bottleChannel = [];
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -170,6 +175,24 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         switch(cmd) {
             // !ping
+		case 'TEST':
+			pool.get('/db', async (req, res) => {
+			    try {
+			      const client = await pool.connect()
+			      const result = await client.query('SELECT * FROM test_table');
+			      const results = { 'results': (result) ? result.rows : null};
+				    bot.sendMessage({
+					    to: channelID,
+					    message: results
+				    });
+			      res.render('pages/db', results );
+			      client.release();
+			    } catch (err) {
+			      console.error(err);
+			      res.send("Error " + err);
+			    }
+			  })
+			break;
 		case 'PING':
 			bot.sendMessage({
 				to: channelID,
