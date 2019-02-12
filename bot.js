@@ -176,22 +176,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
             // !ping
 		case 'TEST':
-			pool.get('/db', async (req, res) => {
-			    try {
-			      const client = await pool.connect()
-			      const result = await client.query('SELECT * FROM test_table');
-			      const results = { 'results': (result) ? result.rows : null};
-				    bot.sendMessage({
-					    to: channelID,
-					    message: results
-				    });
-			      res.render('pages/db', results );
-			      client.release();
-			    } catch (err) {
-			      console.error(err);
-			      res.send("Error " + err);
+			pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+			    if (error) {
+			      throw error
 			    }
+			    response.status(200).json(results.rows)
 			  })
+			}
 			break;
 		case 'PING':
 			bot.sendMessage({
